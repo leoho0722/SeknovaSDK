@@ -1,0 +1,6 @@
+use_frameworks!
+target 'SeknovaSDK_Tests' do
+  pod 'SeknovaSDK', :path => '../'
+  
+  
+end
