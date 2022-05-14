@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SeknovaSDK'
   
-  s.version          = '0.0.14'
+  s.version          = '0.0.15'
   
   s.summary          = 'SDK Test'
 
