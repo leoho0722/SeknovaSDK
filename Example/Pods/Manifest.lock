@@ -1,0 +1,16 @@
+PODS:
+  - SeknovaSDK (0.1.0)
+
+DEPENDENCIES:
+  - SeknovaSDK (from `../`)
+
+EXTERNAL SOURCES:
+  SeknovaSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SeknovaSDK: d10208d71f01fa1f7b5029dc38bd00c3359812d6
+
+PODFILE CHECKSUM: 3c37226d467a178577fd4b72cc4fa7e36037bfcc
+
+COCOAPODS: 1.11.3

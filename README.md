@@ -1,15 +1,27 @@
 # SeknovaSDK
 
-[![CI Status](https://img.shields.io/travis/leoho0722/SeknovaSDK.svg?style=flat)](https://travis-ci.org/leoho0722/SeknovaSDK)
+<!-- [![CI Status](https://img.shields.io/travis/leoho0722/SeknovaSDK.svg?style=flat)](https://travis-ci.org/leoho0722/SeknovaSDK) -->
 [![Version](https://img.shields.io/cocoapods/v/SeknovaSDK.svg?style=flat)](https://cocoapods.org/pods/SeknovaSDK)
 [![License](https://img.shields.io/cocoapods/l/SeknovaSDK.svg?style=flat)](https://cocoapods.org/pods/SeknovaSDK)
 [![Platform](https://img.shields.io/cocoapods/p/SeknovaSDK.svg?style=flat)](https://cocoapods.org/pods/SeknovaSDK)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Requirements
+
+SeknovaSDK requires iOS 13.0 or newer
+
+## Dependency
+
+SeknovaSDK depends on the below third-party library
+* AWSCore 2.26.3
+* AWSCognitoIdentityProvider 2.26.3
+* AWSCognitoIdentityProviderASF 2.26.3
+* AWSS3 2.26.3
+* AWSUserPoolsSignIn 2.26.3
+* AWSMobileClient 2.26.3
+* AWSAuthCore 2.26.3
+* AWSAuthUI 2.26.3
+* RealmSwift 10.20.0
+* CryptoSwift 1.0.0
 
 ## Installation
 

@@ -1,0 +1,747 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04631D2442F194CB370049617760B735 /* Pods-SeknovaSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DE73D4E06D4C8A78B469AABF3DC3999 /* Pods-SeknovaSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		239E0E5682734A8626374B36C32402F0 /* Pods-SeknovaSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 66477114679413706DE3563F32B0AB08 /* Pods-SeknovaSDK_Tests-dummy.m */; };
+		2A282FE3E925748F03BE231CA87CDBB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		86B7FDBA54F0059252CE51767BA5543C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		D0DB280028300CBF00366CEE /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E328300CBE00366CEE /* PersonalInfo.swift */; };
+		D0DB280128300CBF00366CEE /* PersonalDynamicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E428300CBE00366CEE /* PersonalDynamicInfo.swift */; };
+		D0DB280228300CBF00366CEE /* SensingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E528300CBE00366CEE /* SensingRecord.swift */; };
+		D0DB280328300CBF00366CEE /* StartTimeConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E628300CBE00366CEE /* StartTimeConfigure.swift */; };
+		D0DB280428300CBF00366CEE /* TransmitterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E728300CBE00366CEE /* TransmitterInfo.swift */; };
+		D0DB280528300CBF00366CEE /* SensorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E828300CBE00366CEE /* SensorInfo.swift */; };
+		D0DB280628300CBF00366CEE /* EventTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27E928300CBE00366CEE /* EventTable.swift */; };
+		D0DB280728300CBF00366CEE /* GlucoseCorrectParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27EA28300CBE00366CEE /* GlucoseCorrectParam.swift */; };
+		D0DB280828300CBF00366CEE /* AlertTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27EB28300CBE00366CEE /* AlertTable.swift */; };
+		D0DB280928300CBF00366CEE /* CloudParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27ED28300CBE00366CEE /* CloudParseManager.swift */; };
+		D0DB280A28300CBF00366CEE /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27EF28300CBE00366CEE /* AccountManager.swift */; };
+		D0DB280C28300CBF00366CEE /* SDK_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F228300CBE00366CEE /* SDK_Extension.swift */; };
+		D0DB280D28300CBF00366CEE /* SDK_CommandBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F328300CBE00366CEE /* SDK_CommandBase.swift */; };
+		D0DB280E28300CBF00366CEE /* TestFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F428300CBE00366CEE /* TestFunc.swift */; };
+		D0DB280F28300CBF00366CEE /* LocalDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F628300CBE00366CEE /* LocalDatabaseManager.swift */; };
+		D0DB281028300CBF00366CEE /* SDK_Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F728300CBE00366CEE /* SDK_Setting.swift */; };
+		D0DB281128300CBF00366CEE /* GlucoseCorrect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F828300CBE00366CEE /* GlucoseCorrect.swift */; };
+		D0DB281228300CBF00366CEE /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27F928300CBE00366CEE /* LocalDatabase.swift */; };
+		D0DB281328300CBF00366CEE /* SDK_BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27FB28300CBE00366CEE /* SDK_BluetoothManager.swift */; };
+		D0DB281428300CBF00366CEE /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27FC28300CBE00366CEE /* CustomClass.swift */; };
+		D0DB281528300CBF00366CEE /* SDK_BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB27FD28300CBE00366CEE /* SDK_BluetoothService.swift */; };
+		DA1F63B2CAF88D9171F278AE25711885 /* SeknovaSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C46BE9C3884547751CF686D576BA145 /* SeknovaSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E0A943D080128CBD7E9004DA60230FD3 /* SeknovaSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1644EF5F551A8178E37C00FD3EE241 /* SeknovaSDK-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		698489E0E5D417EA1678EA488EC2D86D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78B02CE9AE5DCA4D74B9779BC582EB97;
+			remoteInfo = SeknovaSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F60CB74F70F6EBD2AEE91A3E83AC500 /* Pods-SeknovaSDK_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SeknovaSDK_Tests"; path = Pods_SeknovaSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E75F036A48E89EE0AC6B2EA44105D48 /* Pods-SeknovaSDK_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeknovaSDK_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		3979402E2AA54D7E4A8EF1FF81D1AED4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		426A23FD5815643273021809CC7864CC /* SeknovaSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SeknovaSDK.release.xcconfig; sourceTree = "<group>"; };
+		44F08AFBC6BA75F156D10509C418FBA5 /* Pods-SeknovaSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeknovaSDK_Tests.modulemap"; sourceTree = "<group>"; };
+		5BCCDC96AB287B63FC31CBBAF494644D /* Pods-SeknovaSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeknovaSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		63E6BD372734308515D7E467087936BA /* Pods-SeknovaSDK_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeknovaSDK_Tests-Info.plist"; sourceTree = "<group>"; };
+		66477114679413706DE3563F32B0AB08 /* Pods-SeknovaSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeknovaSDK_Tests-dummy.m"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		747A28E9701313BA1A88A05A3D60F47E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8947331DF68B395E50124923500C8AE1 /* SeknovaSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SeknovaSDK.modulemap; sourceTree = "<group>"; };
+		952EEF50D86D59007A30B4380FEC91DC /* SeknovaSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SeknovaSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		986FAE31F7D7451AA97DF161673D54DA /* Pods-SeknovaSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeknovaSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9C46BE9C3884547751CF686D576BA145 /* SeknovaSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SeknovaSDK-umbrella.h"; sourceTree = "<group>"; };
+		9C8B44B0341169D606D65427246FD986 /* SeknovaSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SeknovaSDK-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DE73D4E06D4C8A78B469AABF3DC3999 /* Pods-SeknovaSDK_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeknovaSDK_Tests-umbrella.h"; sourceTree = "<group>"; };
+		A87AC85CB44284A69E51868A5724967D /* SeknovaSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SeknovaSDK.debug.xcconfig; sourceTree = "<group>"; };
+		B41DF87D22081260BFD91E44B29A5AE9 /* SeknovaSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SeknovaSDK-prefix.pch"; sourceTree = "<group>"; };
+		B4E718D0FBD21AB80B7B077F0CBB81FA /* Pods-SeknovaSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeknovaSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BF1644EF5F551A8178E37C00FD3EE241 /* SeknovaSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SeknovaSDK-dummy.m"; sourceTree = "<group>"; };
+		D0DB27E328300CBE00366CEE /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
+		D0DB27E428300CBE00366CEE /* PersonalDynamicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalDynamicInfo.swift; sourceTree = "<group>"; };
+		D0DB27E528300CBE00366CEE /* SensingRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensingRecord.swift; sourceTree = "<group>"; };
+		D0DB27E628300CBE00366CEE /* StartTimeConfigure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTimeConfigure.swift; sourceTree = "<group>"; };
+		D0DB27E728300CBE00366CEE /* TransmitterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterInfo.swift; sourceTree = "<group>"; };
+		D0DB27E828300CBE00366CEE /* SensorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorInfo.swift; sourceTree = "<group>"; };
+		D0DB27E928300CBE00366CEE /* EventTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTable.swift; sourceTree = "<group>"; };
+		D0DB27EA28300CBE00366CEE /* GlucoseCorrectParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseCorrectParam.swift; sourceTree = "<group>"; };
+		D0DB27EB28300CBE00366CEE /* AlertTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTable.swift; sourceTree = "<group>"; };
+		D0DB27ED28300CBE00366CEE /* CloudParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudParseManager.swift; sourceTree = "<group>"; };
+		D0DB27EF28300CBE00366CEE /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		D0DB27F228300CBE00366CEE /* SDK_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDK_Extension.swift; sourceTree = "<group>"; };
+		D0DB27F328300CBE00366CEE /* SDK_CommandBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDK_CommandBase.swift; sourceTree = "<group>"; };
+		D0DB27F428300CBE00366CEE /* TestFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestFunc.swift; sourceTree = "<group>"; };
+		D0DB27F628300CBE00366CEE /* LocalDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDatabaseManager.swift; sourceTree = "<group>"; };
+		D0DB27F728300CBE00366CEE /* SDK_Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDK_Setting.swift; sourceTree = "<group>"; };
+		D0DB27F828300CBE00366CEE /* GlucoseCorrect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseCorrect.swift; sourceTree = "<group>"; };
+		D0DB27F928300CBE00366CEE /* LocalDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
+		D0DB27FB28300CBE00366CEE /* SDK_BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDK_BluetoothManager.swift; sourceTree = "<group>"; };
+		D0DB27FC28300CBE00366CEE /* CustomClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
+		D0DB27FD28300CBE00366CEE /* SDK_BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDK_BluetoothService.swift; sourceTree = "<group>"; };
+		D25F7D6D43855929863E561A3417C52B /* SeknovaSDK */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SeknovaSDK; path = SeknovaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC4E5A52DB182C6F4064A1F65B05B6BC /* Pods-SeknovaSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeknovaSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1123838D69E054B930FF2A5A07150801 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A282FE3E925748F03BE231CA87CDBB9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6DCC6ADC3D544C4ACD597173AB19632 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86B7FDBA54F0059252CE51767BA5543C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06CB450B63AC2189DBB1CBADC31B6A64 /* Pods-SeknovaSDK_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				44F08AFBC6BA75F156D10509C418FBA5 /* Pods-SeknovaSDK_Tests.modulemap */,
+				986FAE31F7D7451AA97DF161673D54DA /* Pods-SeknovaSDK_Tests-acknowledgements.markdown */,
+				EC4E5A52DB182C6F4064A1F65B05B6BC /* Pods-SeknovaSDK_Tests-acknowledgements.plist */,
+				66477114679413706DE3563F32B0AB08 /* Pods-SeknovaSDK_Tests-dummy.m */,
+				2E75F036A48E89EE0AC6B2EA44105D48 /* Pods-SeknovaSDK_Tests-frameworks.sh */,
+				63E6BD372734308515D7E467087936BA /* Pods-SeknovaSDK_Tests-Info.plist */,
+				9DE73D4E06D4C8A78B469AABF3DC3999 /* Pods-SeknovaSDK_Tests-umbrella.h */,
+				5BCCDC96AB287B63FC31CBBAF494644D /* Pods-SeknovaSDK_Tests.debug.xcconfig */,
+				B4E718D0FBD21AB80B7B077F0CBB81FA /* Pods-SeknovaSDK_Tests.release.xcconfig */,
+			);
+			name = "Pods-SeknovaSDK_Tests";
+			path = "Target Support Files/Pods-SeknovaSDK_Tests";
+			sourceTree = "<group>";
+		};
+		1A1C779789945C3F7100ACE7F9F9C42B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				06CB450B63AC2189DBB1CBADC31B6A64 /* Pods-SeknovaSDK_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		4698D0DBDC405F1AB0D5976AD4245D5A /* SeknovaSDK */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27FE28300CBF00366CEE /* Assets */,
+				D0DB27E128300CBE00366CEE /* Classes */,
+				8609AF02B81E7C0844ECEB7B50DCAD01 /* Pod */,
+				75BF3165FDF022321B2728F0C67264D2 /* Support Files */,
+			);
+			name = SeknovaSDK;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		49B68146FB2C2455CFF7F5C68DA67EBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F60CB74F70F6EBD2AEE91A3E83AC500 /* Pods-SeknovaSDK_Tests */,
+				D25F7D6D43855929863E561A3417C52B /* SeknovaSDK */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		75BF3165FDF022321B2728F0C67264D2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8947331DF68B395E50124923500C8AE1 /* SeknovaSDK.modulemap */,
+				BF1644EF5F551A8178E37C00FD3EE241 /* SeknovaSDK-dummy.m */,
+				9C8B44B0341169D606D65427246FD986 /* SeknovaSDK-Info.plist */,
+				B41DF87D22081260BFD91E44B29A5AE9 /* SeknovaSDK-prefix.pch */,
+				9C46BE9C3884547751CF686D576BA145 /* SeknovaSDK-umbrella.h */,
+				A87AC85CB44284A69E51868A5724967D /* SeknovaSDK.debug.xcconfig */,
+				426A23FD5815643273021809CC7864CC /* SeknovaSDK.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SeknovaSDK";
+			sourceTree = "<group>";
+		};
+		8609AF02B81E7C0844ECEB7B50DCAD01 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				747A28E9701313BA1A88A05A3D60F47E /* LICENSE */,
+				3979402E2AA54D7E4A8EF1FF81D1AED4 /* README.md */,
+				952EEF50D86D59007A30B4380FEC91DC /* SeknovaSDK.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				E6451F4CB81CBD21A7A690879CBCBBBE /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				49B68146FB2C2455CFF7F5C68DA67EBC /* Products */,
+				1A1C779789945C3F7100ACE7F9F9C42B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D0DB27E128300CBE00366CEE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27E228300CBE00366CEE /* Basic Storage */,
+				D0DB27EC28300CBE00366CEE /* Cloud API */,
+				D0DB27EE28300CBE00366CEE /* AccountManager */,
+				D0DB27F128300CBE00366CEE /* Support Files */,
+				D0DB27F528300CBE00366CEE /* LocalDatabase */,
+				D0DB27FA28300CBE00366CEE /* Bluetooth */,
+			);
+			name = Classes;
+			path = SeknovaSDK/Classes;
+			sourceTree = "<group>";
+		};
+		D0DB27E228300CBE00366CEE /* Basic Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27E328300CBE00366CEE /* PersonalInfo.swift */,
+				D0DB27E428300CBE00366CEE /* PersonalDynamicInfo.swift */,
+				D0DB27E528300CBE00366CEE /* SensingRecord.swift */,
+				D0DB27E628300CBE00366CEE /* StartTimeConfigure.swift */,
+				D0DB27E728300CBE00366CEE /* TransmitterInfo.swift */,
+				D0DB27E828300CBE00366CEE /* SensorInfo.swift */,
+				D0DB27E928300CBE00366CEE /* EventTable.swift */,
+				D0DB27EA28300CBE00366CEE /* GlucoseCorrectParam.swift */,
+				D0DB27EB28300CBE00366CEE /* AlertTable.swift */,
+			);
+			path = "Basic Storage";
+			sourceTree = "<group>";
+		};
+		D0DB27EC28300CBE00366CEE /* Cloud API */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27ED28300CBE00366CEE /* CloudParseManager.swift */,
+			);
+			path = "Cloud API";
+			sourceTree = "<group>";
+		};
+		D0DB27EE28300CBE00366CEE /* AccountManager */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27EF28300CBE00366CEE /* AccountManager.swift */,
+			);
+			path = AccountManager;
+			sourceTree = "<group>";
+		};
+		D0DB27F128300CBE00366CEE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27F228300CBE00366CEE /* SDK_Extension.swift */,
+				D0DB27F328300CBE00366CEE /* SDK_CommandBase.swift */,
+				D0DB27F428300CBE00366CEE /* TestFunc.swift */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		D0DB27F528300CBE00366CEE /* LocalDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27F628300CBE00366CEE /* LocalDatabaseManager.swift */,
+				D0DB27F728300CBE00366CEE /* SDK_Setting.swift */,
+				D0DB27F828300CBE00366CEE /* GlucoseCorrect.swift */,
+				D0DB27F928300CBE00366CEE /* LocalDatabase.swift */,
+			);
+			path = LocalDatabase;
+			sourceTree = "<group>";
+		};
+		D0DB27FA28300CBE00366CEE /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				D0DB27FB28300CBE00366CEE /* SDK_BluetoothManager.swift */,
+				D0DB27FC28300CBE00366CEE /* CustomClass.swift */,
+				D0DB27FD28300CBE00366CEE /* SDK_BluetoothService.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		D0DB27FE28300CBF00366CEE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
+			path = SeknovaSDK/Assets;
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6451F4CB81CBD21A7A690879CBCBBBE /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4698D0DBDC405F1AB0D5976AD4245D5A /* SeknovaSDK */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		63BEDC6AEBE7A0CF83977536C472A09F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA1F63B2CAF88D9171F278AE25711885 /* SeknovaSDK-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F548C8A13DAEE6E6538133B2FB734B56 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04631D2442F194CB370049617760B735 /* Pods-SeknovaSDK_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		78B02CE9AE5DCA4D74B9779BC582EB97 /* SeknovaSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74F8B3AFDD30F3BF006003E3A6ECE68A /* Build configuration list for PBXNativeTarget "SeknovaSDK" */;
+			buildPhases = (
+				63BEDC6AEBE7A0CF83977536C472A09F /* Headers */,
+				7A38B79EEA5B372C15B387EDA39189EE /* Sources */,
+				1123838D69E054B930FF2A5A07150801 /* Frameworks */,
+				588CBCECA9431600792EB5FF06CF9838 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SeknovaSDK;
+			productName = SeknovaSDK;
+			productReference = D25F7D6D43855929863E561A3417C52B /* SeknovaSDK */;
+			productType = "com.apple.product-type.framework";
+		};
+		EECF09206AB0DA7497720088A2A0B882 /* Pods-SeknovaSDK_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36004226FB8352A82013D942CFD7C209 /* Build configuration list for PBXNativeTarget "Pods-SeknovaSDK_Tests" */;
+			buildPhases = (
+				F548C8A13DAEE6E6538133B2FB734B56 /* Headers */,
+				E76C419802938369DF20111938D18439 /* Sources */,
+				E6DCC6ADC3D544C4ACD597173AB19632 /* Frameworks */,
+				DC96AE46D6DE75B0209161CED5AD3468 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD32FC8B399C16FD6B56F42FAB51E7FC /* PBXTargetDependency */,
+			);
+			name = "Pods-SeknovaSDK_Tests";
+			productName = Pods_SeknovaSDK_Tests;
+			productReference = 0F60CB74F70F6EBD2AEE91A3E83AC500 /* Pods-SeknovaSDK_Tests */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 49B68146FB2C2455CFF7F5C68DA67EBC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EECF09206AB0DA7497720088A2A0B882 /* Pods-SeknovaSDK_Tests */,
+				78B02CE9AE5DCA4D74B9779BC582EB97 /* SeknovaSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		588CBCECA9431600792EB5FF06CF9838 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC96AE46D6DE75B0209161CED5AD3468 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A38B79EEA5B372C15B387EDA39189EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0A943D080128CBD7E9004DA60230FD3 /* SeknovaSDK-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E76C419802938369DF20111938D18439 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DB280F28300CBF00366CEE /* LocalDatabaseManager.swift in Sources */,
+				D0DB280228300CBF00366CEE /* SensingRecord.swift in Sources */,
+				D0DB280D28300CBF00366CEE /* SDK_CommandBase.swift in Sources */,
+				D0DB280C28300CBF00366CEE /* SDK_Extension.swift in Sources */,
+				D0DB280828300CBF00366CEE /* AlertTable.swift in Sources */,
+				D0DB281128300CBF00366CEE /* GlucoseCorrect.swift in Sources */,
+				D0DB281428300CBF00366CEE /* CustomClass.swift in Sources */,
+				D0DB280128300CBF00366CEE /* PersonalDynamicInfo.swift in Sources */,
+				239E0E5682734A8626374B36C32402F0 /* Pods-SeknovaSDK_Tests-dummy.m in Sources */,
+				D0DB280728300CBF00366CEE /* GlucoseCorrectParam.swift in Sources */,
+				D0DB280528300CBF00366CEE /* SensorInfo.swift in Sources */,
+				D0DB281028300CBF00366CEE /* SDK_Setting.swift in Sources */,
+				D0DB281328300CBF00366CEE /* SDK_BluetoothManager.swift in Sources */,
+				D0DB280028300CBF00366CEE /* PersonalInfo.swift in Sources */,
+				D0DB280928300CBF00366CEE /* CloudParseManager.swift in Sources */,
+				D0DB281228300CBF00366CEE /* LocalDatabase.swift in Sources */,
+				D0DB280628300CBF00366CEE /* EventTable.swift in Sources */,
+				D0DB280328300CBF00366CEE /* StartTimeConfigure.swift in Sources */,
+				D0DB280E28300CBF00366CEE /* TestFunc.swift in Sources */,
+				D0DB281528300CBF00366CEE /* SDK_BluetoothService.swift in Sources */,
+				D0DB280428300CBF00366CEE /* TransmitterInfo.swift in Sources */,
+				D0DB280A28300CBF00366CEE /* AccountManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD32FC8B399C16FD6B56F42FAB51E7FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SeknovaSDK;
+			target = 78B02CE9AE5DCA4D74B9779BC582EB97 /* SeknovaSDK */;
+			targetProxy = 698489E0E5D417EA1678EA488EC2D86D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E12317680023CA52B38A0A399803916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BCCDC96AB287B63FC31CBBAF494644D /* Pods-SeknovaSDK_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeknovaSDK_Tests/Pods-SeknovaSDK_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeknovaSDK_Tests/Pods-SeknovaSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1B8E06E8FAAF87A0B8248B474F530098 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 426A23FD5815643273021809CC7864CC /* SeknovaSDK.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SeknovaSDK/SeknovaSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SeknovaSDK/SeknovaSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SeknovaSDK/SeknovaSDK.modulemap";
+				PRODUCT_MODULE_NAME = SeknovaSDK;
+				PRODUCT_NAME = SeknovaSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		23378C582FFE7621F219C2CF21DD9F75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4E718D0FBD21AB80B7B077F0CBB81FA /* Pods-SeknovaSDK_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeknovaSDK_Tests/Pods-SeknovaSDK_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeknovaSDK_Tests/Pods-SeknovaSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		431BA2B8298F0EE71735B9E0114E1955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		79759604D78320E712558F49DF19AA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		916F856C5540C8D1176BC29A33CB2C22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87AC85CB44284A69E51868A5724967D /* SeknovaSDK.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SeknovaSDK/SeknovaSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SeknovaSDK/SeknovaSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SeknovaSDK/SeknovaSDK.modulemap";
+				PRODUCT_MODULE_NAME = SeknovaSDK;
+				PRODUCT_NAME = SeknovaSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36004226FB8352A82013D942CFD7C209 /* Build configuration list for PBXNativeTarget "Pods-SeknovaSDK_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E12317680023CA52B38A0A399803916 /* Debug */,
+				23378C582FFE7621F219C2CF21DD9F75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79759604D78320E712558F49DF19AA9F /* Debug */,
+				431BA2B8298F0EE71735B9E0114E1955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74F8B3AFDD30F3BF006003E3A6ECE68A /* Build configuration list for PBXNativeTarget "SeknovaSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916F856C5540C8D1176BC29A33CB2C22 /* Debug */,
+				1B8E06E8FAAF87A0B8248B474F530098 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

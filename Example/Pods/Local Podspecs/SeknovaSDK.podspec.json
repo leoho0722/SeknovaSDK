@@ -1,0 +1,22 @@
+{
+  "name": "SeknovaSDK",
+  "version": "0.1.0",
+  "summary": "A short description of SeknovaSDK.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/leoho0722/SeknovaSDK",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "leoho0722": "leo160918@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/leoho0722/SeknovaSDK.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "SeknovaSDK/Classes/**/*"
+}

@@ -12,15 +12,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		17C40535125DA26C2FFF6FD2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		17C40535125DA26C2FFF6FD2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		21526DFC58DB451AF8B99CC0 /* Pods_SeknovaSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeknovaSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B2F68597BDB864C0D1EEB03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		2B2F68597BDB864C0D1EEB03 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* SeknovaSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeknovaSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		64C7A2FF971E1A14A8033D5F /* Pods-SeknovaSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeknovaSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SeknovaSDK_Tests/Pods-SeknovaSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE8B1EF93A03F2060BEA9707 /* Pods-SeknovaSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeknovaSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-SeknovaSDK_Tests/Pods-SeknovaSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F1E9548E61C91A1329E2A4E2 /* SeknovaSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SeknovaSDK.podspec; path = ../SeknovaSDK.podspec; sourceTree = "<group>"; };
+		F1E9548E61C91A1329E2A4E2 /* SeknovaSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SeknovaSDK.podspec; path = ../SeknovaSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,6 @@
 				64C7A2FF971E1A14A8033D5F /* Pods-SeknovaSDK_Tests.debug.xcconfig */,
 				CE8B1EF93A03F2060BEA9707 /* Pods-SeknovaSDK_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -131,10 +130,6 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
-					607FACCF1AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
-					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
@@ -147,6 +142,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
