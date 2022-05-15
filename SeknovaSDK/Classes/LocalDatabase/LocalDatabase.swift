@@ -955,7 +955,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddEvent(event: EventTable) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_EventTable.self).filter("Timestamp = %lld", event.TimeStamp)
+        let lastRecords = realm.objects(DB_EventTable.self).filter("TimeStamp = %lld", event.TimeStamp)
         if lastRecords.count == 0 {
             let eventTable = DB_EventTable()
             
@@ -994,7 +994,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func UpdateEvent(event: EventTable) {
         let realm = try! Realm()
-        let results = realm.objects(DB_EventTable.self).filter("Index == %d AND Timestamp == %lld", event.Index, event.TimeStamp)
+        let results = realm.objects(DB_EventTable.self).filter("Index == %d AND TimeStamp == %lld", event.Index, event.TimeStamp)
         if results.count > 0 {
             do {
                 try! realm.write {
@@ -1032,7 +1032,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetEvents(userID: String, startTime: Int64, endTime: Int64) -> [EventTable] {
         let realm = try! Realm()
         var eventTableArray = [EventTable]()
-        let results = realm.objects(DB_EventTable.self).filter("UserID == %s AND Timestamp BETWEEN { %lld, %lld }", userID, startTime, endTime)
+        let results = realm.objects(DB_EventTable.self).filter("TimeStamp BETWEEN { %lld, %lld }", startTime, endTime)
         if results.count > 0 {
             for i in 0 ..< results.count {
                 let eventTable = EventTable()
@@ -1084,7 +1084,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetAlerts(userID: String, startTime: Int64, endTime: Int64) -> [AlertTable] {
         let realm = try! Realm()
         var alertTableArray = [AlertTable]()
-        let results = realm.objects(DB_AlertTable.self).filter("UserID == %s AND Timestamp BETWEEN { %lld, %lld }", userID, startTime, endTime)
+        let results = realm.objects(DB_AlertTable.self).filter("Timestamp BETWEEN { %lld, %lld }", startTime, endTime)
         if results.count > 0 {
             for i in 0 ..< results.count {
                 let alertTable = AlertTable()
