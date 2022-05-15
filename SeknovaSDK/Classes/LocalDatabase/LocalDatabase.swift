@@ -779,7 +779,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddRecord(record: SensingRecord) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_SensingRecord.self).filter("Timestamp == \(record.Timestamp) AND IndexID == \(record.IndexID)")
+        let lastRecords = realm.objects(DB_SensingRecord.self).filter("Timestamp = %lld", record.Timestamp, record.IndexID)
         if lastRecords.count == 0 {
             let records = DB_SensingRecord()
             
@@ -840,7 +840,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func UpdateRecord(record: SensingRecord) {
         let realm = try! Realm()
         let time = dateFormatter(format: "MM/dd HH:mm:ss", date: Date())
-        let refresh = realm.objects(DB_SensingRecord.self).filter("IndexID == \(record.IndexID)")
+        let refresh = realm.objects(DB_SensingRecord.self).filter("Timestamp == %lld", record.Timestamp)
         if refresh.count > 0 {
             do {
                 try! realm.write {
@@ -896,7 +896,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetRecords(userID: String, startTime: Int64, endTime: Int64) -> [SensingRecord] {
         let realm = try! Realm()
         var sensingRecordArray = [SensingRecord]()
-        let results = realm.objects(DB_SensingRecord.self).filter("UserID == \(userID) AND Timestamp BETWEEN {\(startTime), \(endTime)}")
+        let results = realm.objects(DB_SensingRecord.self).filter("UserID == %s AND Timestamp BETWEEN { %lld, %lld }", userID, startTime, endTime)
         if results.count > 0 {
             for i in 0 ..< results.count {
                 let sensingRecord = SensingRecord()
@@ -927,7 +927,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetRecords(userID: String, Time: Int64) -> SensingRecord {
         let realm = try! Realm()
         let sensingRecord = SensingRecord()
-        let results = realm.objects(DB_SensingRecord.self).filter("UserID == \(userID) AND Timestamp == \(Time)")
+        let results = realm.objects(DB_SensingRecord.self).filter("UserID == %s AND Timestamp == %lld", userID, Time)
         if results.count > 0 {
             sensingRecord.Timestamp = results[0].Timestamp
             sensingRecord.IndexID = results[0].IndexID
@@ -955,7 +955,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddEvent(event: EventTable) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_EventTable.self).filter("Timestamp == \(event.TimeStamp)")
+        let lastRecords = realm.objects(DB_EventTable.self).filter("Timestamp = %lld", event.TimeStamp)
         if lastRecords.count == 0 {
             let eventTable = DB_EventTable()
             
@@ -994,7 +994,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func UpdateEvent(event: EventTable) {
         let realm = try! Realm()
-        let results = realm.objects(DB_EventTable.self).filter("Index == \(event.Index) AND Timestamp == \(event.TimeStamp)")
+        let results = realm.objects(DB_EventTable.self).filter("Index == %d AND Timestamp == %lld", event.Index, event.TimeStamp)
         if results.count > 0 {
             do {
                 try! realm.write {
@@ -1032,7 +1032,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetEvents(userID: String, startTime: Int64, endTime: Int64) -> [EventTable] {
         let realm = try! Realm()
         var eventTableArray = [EventTable]()
-        let results = realm.objects(DB_EventTable.self).filter("UserID == \(userID) AND Timestamp BETWEEN {\(startTime), \(endTime)}")
+        let results = realm.objects(DB_EventTable.self).filter("UserID == %s AND Timestamp BETWEEN { %lld, %lld }", userID, startTime, endTime)
         if results.count > 0 {
             for i in 0 ..< results.count {
                 let eventTable = EventTable()
@@ -1055,7 +1055,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddAlert(alert: AlertTable) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_AlertTable.self).filter("Timestamp == \(alert.Timestamp)")
+        let lastRecords = realm.objects(DB_AlertTable.self).filter("Timestamp = %lld", alert.Timestamp)
         if (lastRecords.count == 0) {
             let alertTable = DB_AlertTable()
             
@@ -1084,7 +1084,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetAlerts(userID: String, startTime: Int64, endTime: Int64) -> [AlertTable] {
         let realm = try! Realm()
         var alertTableArray = [AlertTable]()
-        let results = realm.objects(DB_AlertTable.self).filter("UserID == \(userID) AND Timestamp BETWEEN {\(startTime), \(endTime)}")
+        let results = realm.objects(DB_AlertTable.self).filter("UserID == %s AND Timestamp BETWEEN { %lld, %lld }", userID, startTime, endTime)
         if results.count > 0 {
             for i in 0 ..< results.count {
                 let alertTable = AlertTable()
@@ -1102,7 +1102,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddPersonalInfo(info: PersonalInfo) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_PersonalInfo.self).filter("UserID == \(info.UserID)")
+        let lastRecords = realm.objects(DB_PersonalInfo.self).filter("UserID = %s", info.UserID)
         if lastRecords.count == 0 {
             let personalInfo = DB_PersonalInfo()
             
@@ -1158,7 +1158,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func UpdatePersonalInfo(info: PersonalInfo) {
         let realm = try! Realm()
-        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == \(info.UserID)")
+        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == %s", info.UserID)
         if results.count > 0 {
             do {
                 try! realm.write {
@@ -1212,7 +1212,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetPersonalInfo(userID: String) -> PersonalInfo {
         let realm = try! Realm()
         let personalInfo = PersonalInfo()
-        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == \(userID)")
+        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == %s", userID)
         if results.count > 0 {
             personalInfo.UserID = results[0].UserID
             personalInfo.fname = results[0].fname
@@ -1236,7 +1236,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddPersonDynamicInfo(info: PersonalDynamicInfo) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == \(info.UserID)")
+        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID = %s", info.UserID)
         if lastRecords.count == 0 {
             let personalDynamicInfo = DB_PersonalDynamicInfo()
             
@@ -1286,7 +1286,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func UpdatePersonDynamicInfo(info: PersonalDynamicInfo) {
         let realm = try! Realm()
-        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == \(info.UserID)")
+        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == %s", info.UserID)
         if results.count > 0 {
             do {
                 try! realm.write {
@@ -1334,7 +1334,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     public func GetPersonDynamicInfo(userID: String) -> [PersonalDynamicInfo] {
         let realm = try! Realm()
         var personalDynamicInfoArray = [PersonalDynamicInfo]()
-        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == \(userID)")
+        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == %s", userID)
         if results.count > 0 {
             for i in 0 ..< results.count {
                 let personalDynamicInfo = PersonalDynamicInfo()
