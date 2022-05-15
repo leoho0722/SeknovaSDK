@@ -19,7 +19,7 @@ public class CloudParseManager: NSObject {
     public func GetJsonDataReport(input: [SensingRecord]) -> Data? {
         var records: [SDK_SendADCRequest.Records] = []
         var splitRecords: [[SDK_SendADCRequest.Records]] = []
-        var apiRecordCountLimit: Int = 144
+        let apiRecordCountLimit: Int = 144
         
         for i in 0 ..< input.count {
             records.append(SDK_SendADCRequest.Records(RecordTime: (input[i].Timestamp?.timeStampToDate().convert2LocalTZUtcStr())!,
@@ -29,7 +29,7 @@ public class CloudParseManager: NSObject {
                                                       Battery: input[i].Battery!,
                                                       Temperature: Double(input[i].Temperature!),
                                                       IndexID: input[i].IndexID!,
-                                                      Calibrated: input[i].isDisplay!))
+                                                      Calibrated: input[i].isDisplay))
             splitRecords = []
             splitRecords = records.chunked(by: apiRecordCountLimit)
             
@@ -188,11 +188,11 @@ public class CloudParseManager: NSObject {
         personalInfo.phone = jsonRsp?.Phone
         personalInfo.IsPhoneBinding = (jsonRsp?.PhoneVerified == 1) ? true : false
         personalInfo.address = jsonRsp?.Address
-        personalInfo.gender = UInt8((jsonRsp?.Gender)!)
-        personalInfo.height = UInt8((jsonRsp?.Height)!)
-        personalInfo.weight = UInt8((jsonRsp?.Weight)!)
-        personalInfo.ethnic = UInt8((jsonRsp?.Race)!)
-        personalInfo.drink = UInt8((jsonRsp?.Liquor)!)
+        personalInfo.gender = Int((jsonRsp?.Gender)!)
+        personalInfo.height = Int((jsonRsp?.Height)!)
+        personalInfo.weight = Int((jsonRsp?.Weight)!)
+        personalInfo.ethnic = Int((jsonRsp?.Race)!)
+        personalInfo.drink = Int((jsonRsp?.Liquor)!)
         personalInfo.smoke = (Int((jsonRsp?.Smoke)!) == 1) ? true : false
 
 //        // 下面是用來檢查是否有正確 Parse 成 PersonalInfo
@@ -255,82 +255,82 @@ public class CloudParseManager: NSObject {
 
 public struct SDK_SendADCRequest: Codable {
     
-    var CmdType: Int
-    var Status: Int
-    var DeviceID: String
-    var SensorID: String
-    var FirstRecordDatetime: String
-    var UploadDatetime: String
-    var RecordCount: Int
-    var AdcNumber: Int
-    var CheckBit: UInt8
-    var Records: [Records]
+    public var CmdType: Int
+    public var Status: Int
+    public var DeviceID: String
+    public var SensorID: String
+    public var FirstRecordDatetime: String
+    public var UploadDatetime: String
+    public var RecordCount: Int
+    public var AdcNumber: Int
+    public var CheckBit: UInt8
+    public var Records: [Records]
     
-    struct Records: Codable {
-        var RecordTime: String
-        var Value1: [Int]
-        var Value2: [Int]
-        var RSSI: Int
-        var Battery: Int
-        var Temperature: Double
-        var IndexID: Int
-        var Calibrated: Bool
+    public struct Records: Codable {
+        public var RecordTime: String
+        public var Value1: [Int]
+        public var Value2: [Int]
+        public var RSSI: Int
+        public var Battery: Int
+        public var Temperature: Double
+        public var IndexID: Int
+        public var Calibrated: Bool
     }
     
 }
 
 public struct SDK_GetUserProfileResponse: Decodable {
     
-    let CmdRsp: String?
-    let UserID: String?
-    let code: Int?
-    let ErrorMsg: String?
-    var RecordDate: String?
-    var FirstName: String?
-    var LastName: String?
-    var Email: String?
-    var Address: String?
-    var Phone: String?
-    var Height: Double?
-    var Weight: Double?
-    var Gender: String?
-    var Race: String?
-    var Birthday: String?
-    var Smoke: String?
-    var Liquor: String?
-    var PhoneVerified: Int?
-    var Records: [Records]?
+    public let CmdRsp: String?
+    public let UserID: String?
+    public let code: Int?
+    public let ErrorMsg: String?
+    public var RecordDate: String?
+    public var FirstName: String?
+    public var LastName: String?
+    public var Email: String?
+    public var Address: String?
+    public var Phone: String?
+    public var Height: Double?
+    public var Weight: Double?
+    public var Gender: String?
+    public var Race: String?
+    public var Birthday: String?
+    public var Smoke: String?
+    public var Liquor: String?
+    public var PhoneVerified: Int?
+    public var Records: [Records]?
     
-    struct Records: Decodable {
-        var RecordDate: String?
-        var BodyFatPercentage: Int?
-        var HbA1c: Double?
-        var SYS: Int?
-        var DIA: Int?
-        var TC: Int?
-        var HDLC: Int?
-        var LDL: Int?
-        var Diabetes: String?
-        var CRE: Double?
+    public struct Records: Decodable {
+        public var RecordDate: String?
+        public var BodyFatPercentage: Int?
+        public var HbA1c: Double?
+        public var SYS: Int?
+        public var DIA: Int?
+        public var TC: Int?
+        public var HDLC: Int?
+        public var LDL: Int?
+        public var Diabetes: String?
+        public var CRE: Double?
     }
     
 }
 
 public struct SDK_GetEventResponse: Decodable {
     
-    let CmdRsp: String?
-    let Code: Int?
-    let ErrorMsg: String?
-    var Events: [Events]?
+    public let CmdRsp: String?
+    public let Code: Int?
+    public let ErrorMsg: String?
+    public var Events: [Events]?
     
-    struct Events: Decodable {
-        var ID: Int?
-        var DateTime: String?
-        var EventID: Int?
-        var EventValue: Int?
-        var EventAttribute: [String]?
-        var Note: String?
-        var DeviceID: String?
+    public struct Events: Decodable {
+        public var ID: Int?
+        public var DateTime: String?
+        public var EventID: Int?
+        public var EventValue: Int?
+        public var EventAttribute: [String]?
+        public var Note: String?
+        public var DeviceID: String?
     }
     
 }
@@ -362,27 +362,6 @@ extension CloudParseManager {
                 // handle error
             }
         }
-    }
-    
-}
-
-extension Int64 {
-    
-    func timeStampToDate() -> Date {
-        let timeInterval = TimeInterval(self)
-        let date = Date(timeIntervalSince1970: timeInterval)
-        return date
-    }
-    
-}
-
-extension Date {
-    
-    func convert2CurrectDateStr() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .current
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        return dateFormatter.string(from: self)
     }
     
 }

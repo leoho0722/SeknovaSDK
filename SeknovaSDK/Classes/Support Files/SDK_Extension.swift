@@ -227,98 +227,15 @@ public extension Int {
     
 }
 
-//public extension UIView {
-//
-//    // 1.File Owner
-//    func setViewByOwner<T: UIView>(_ type: T.Type) {
-//        let nib = UINib(nibName: String(describing: type), bundle: Bundle.main)
-//        let view =  nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-//        view.frame = bounds
-//        addSubview(view)
-//    }
-//
-//    // 2.View
-//    func setViewByNib<T: UIView>(_ type: T.Type) {
-//        let objects = Bundle.main.loadNibNamed(String(describing: type), owner: self, options: [:])
-//        let view = objects?.first as? T ?? T()
-//        view.frame = bounds
-//        addSubview(view)
-//    }
-//
-//
-//    // 1.File Owner
-//    class func getViewByOwner<T: UIView>() -> T {
-//        let nib = UINib(nibName: String(describing: self), bundle: Bundle.main)
-//        return nib.instantiate(withOwner: self, options: nil)[0] as! T
-//    }
-//
-//    // 2.View
-//    class func getViewByNib<T: UIView>() -> T {
-//        let objects = Bundle.main.loadNibNamed(String(describing: self), owner: self, options: [:])
-//        return objects?.first as? T ?? T()
-//    }
-//
-//    public class func loadFromNib() -> UINib {
-//        return UINib(nibName: String(describing: self), bundle: nil)
-//    }
-//
-//    class func fromNib<T: UIView>() -> T {
-//        return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
-//    }
-//
-//}
-
-//public extension UIBarButtonItem {
-//
-//    static func addButton(_ target: Any?,
-//                          action: Selector,
-//                          imageName: String,
-//                          size:CGSize = CGSize(width: 28, height: 28),
-//                          tintColor:UIColor?) -> UIBarButtonItem {
-//        let button = UIButton(type: .system)
-//        button.tintColor = tintColor
-//        button.setImage(UIImage(named: imageName), for: .normal)
-//        button.addTarget(target, action: action, for: .touchUpInside)
-//
-//        let menuBarItem = UIBarButtonItem(customView: button)
-//        menuBarItem.customView?.translatesAutoresizingMaskIntoConstraints = false
-//        menuBarItem.customView?.heightAnchor.constraint(equalToConstant: size.height).isActive = true
-//        menuBarItem.customView?.widthAnchor.constraint(equalToConstant: size.width).isActive = true
-//
-//        return menuBarItem
-//    }
-//
-//}
-
-//public extension UILabel {
-//
-//    func addImage(imageName: String) {
-//        let attachment:NSTextAttachment = NSTextAttachment()
-//        attachment.image = UIImage(named: imageName)
-//
-//        let attachmentString:NSAttributedString = NSAttributedString(attachment: attachment)
-//        let myString:NSMutableAttributedString = NSMutableAttributedString(string: self.text!)
-//        myString.append(attachmentString)
-//
-//        self.attributedText = myString
-//    }
-//
-//}
-
-//// MARK: - Extension 鍵盤
-//public extension UIViewController {
-//
-//    func hideKeyboardWhenTappedAround() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-//    }
-//
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//
-//}
+public extension Int64 {
+    
+    func timeStampToDate() -> Date {
+        let timeInterval = TimeInterval(self)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return date
+    }
+    
+}
 
 public extension Encodable {
     
@@ -343,6 +260,13 @@ public extension Date {
     
     var millisecondsSince1970: Int64 {
         return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
+    }
+    
+    func convert2CurrectDateStr() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .current
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: self)
     }
     
     func convert2UtcStr() -> String {
@@ -445,178 +369,6 @@ public extension Realm {
     }
     
 }
-
-//public enum ButtonEdgeInsetsStyle {
-//    // 圖片相對於 label 的位置
-//    case Top
-//    case Left
-//    case Right
-//    case Bottom
-//}
-//
-//public extension UITextField {
-//
-//    open override func target(forAction action: Selector, withSender sender: Any?) -> Any? {
-//
-//        if #available(iOS 10, *) {
-//            if action == #selector(UIResponderStandardEditActions.paste(_:)) {
-//                return nil
-//            }
-//        } else {
-//            if action == #selector(paste(_:)) {
-//                return nil
-//            }
-//        }
-//        return super.target(forAction: action, withSender: sender)
-//    }
-//
-//}
-
-//public extension UIButton {
-//
-//    func layoutButton(style: ButtonEdgeInsetsStyle, imageTitleSpace: CGFloat) {
-//        // 得到 imageView 和 titleLabel 的寬高
-//        let imageWidth = self.imageView?.frame.size.width
-//        let imageHeight = self.imageView?.frame.size.height
-//
-//        var labelWidth: CGFloat! = 0.0
-//        var labelHeight: CGFloat! = 0.0
-//
-//        labelWidth = self.titleLabel?.intrinsicContentSize.width
-//        labelHeight = self.titleLabel?.intrinsicContentSize.height
-//
-//        // 初始化 imageEdgeInsets 和 labelEdgeInsets
-//        var imageEdgeInsets = UIEdgeInsets.zero
-//        var labelEdgeInsets = UIEdgeInsets.zero
-//
-//        // 根據 style 和 space 得到 imageEdgeInsets 和 labelEdgeInsets 的值
-//        switch style {
-//        /**
-//            * titleEdgeInsets 是 titleLabel 相對於其上下左右的 inset，跟 tableView 的 contentInset 是類似的；
-//            * 如果只有 title，那 titleLabel 的 上下左右 都是 相對於 Button 的；
-//            * 如果只有 image，那 imageView 的 上下左右 都是 相對於 Button 的；
-//            * 如果同时有 image 和 label，那 image 的 上下左 是 相對於 Button 的，右 是 相對於 label 的；
-//            * label 的 上下右 是 相對於 Button 的， 左 是 相對於 label 的。
-//             */
-//        case .Top:
-//            // 上 左 下 右
-//            imageEdgeInsets = UIEdgeInsets(top: -labelHeight-imageTitleSpace/2, left: 0, bottom: 0, right: -labelWidth)
-//            labelEdgeInsets = UIEdgeInsets(top: 0, left: -imageWidth!, bottom: -imageHeight!-imageTitleSpace/2, right: 0)
-//            break;
-//
-//        case .Left:
-//            imageEdgeInsets = UIEdgeInsets(top: 3, left: -imageTitleSpace/2, bottom: 3, right: imageTitleSpace)
-//            labelEdgeInsets = UIEdgeInsets(top: 0, left: imageTitleSpace/2, bottom: 0, right: -imageTitleSpace/2)
-//            break;
-//
-//        case .Bottom:
-//            imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: -labelHeight!-imageTitleSpace/2, right: -labelWidth)
-//            labelEdgeInsets = UIEdgeInsets(top: -imageHeight!-imageTitleSpace/2, left: -imageWidth!, bottom: 0, right: 0)
-//            break;
-//
-//        case .Right:
-//            imageEdgeInsets = UIEdgeInsets(top: 0, left: labelWidth+imageTitleSpace/2, bottom: 0, right: -labelWidth-imageTitleSpace/2)
-//            labelEdgeInsets = UIEdgeInsets(top: 0, left: -imageWidth!-imageTitleSpace/2, bottom: 0, right: imageWidth!+imageTitleSpace/2)
-//            break;
-//        }
-//
-//        self.titleEdgeInsets = labelEdgeInsets
-//        self.imageEdgeInsets = imageEdgeInsets
-//
-//    }
-//}
-
-//public extension UITableView {
-//
-//    // 根據 TableView 的資料量來設定 TableView 的 Scroll 功能是否開啟
-//    /// - Parameters:
-//    /// - tableView: 放你要控制的 UITableView
-//    /// - isScrollLock: 根據 TableView 的資料量來決定要不要開啟 TableView 的 Scroll 功能，true 是開啟，false 是關閉
-//    /// - Returns:不管是 isScrollLock 是 true 還是 false，section 0 的 heightForHeader 都會比其他 section 變高一點點
-//    func tableViewScrollLock(tableView: UITableView, isScrollLock: Bool) {
-//        tableView.alwaysBounceVertical = isScrollLock
-//        tableView.reloadData()
-//    }
-//
-//}
-
-//public extension UIDevice {
-//
-//    var modelName: String {
-//        var systemInfo = utsname()
-//        uname(&systemInfo)
-//        let machineMirror = Mirror(reflecting: systemInfo.machine)
-//        let identifier = machineMirror.children.reduce("") { identifier, element in
-//            guard let value = element.value as? Int8, value != 0 else { return identifier }
-//            return identifier + String(UnicodeScalar(UInt8(value)))
-//        }
-//
-//        switch identifier {
-//        case "iPod5,1":                                 return "iPod Touch 5"
-//        case "iPod7,1":                                 return "iPod Touch 6"
-//        case "iPhone1,1":                               return "iPhone"
-//        case "iPhone1,2":                               return "iPhone 3G"
-//        case "iPhone2,1":                               return "iPhone 3GS"
-//        case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return "iPhone 4"
-//        case "iPhone4,1":                               return "iPhone 4s"
-//        case "iPhone5,1", "iPhone5,2":                  return "iPhone 5"
-//        case "iPhone5,3", "iPhone5,4":                  return "iPhone 5c"
-//        case "iPhone6,1", "iPhone6,2":                  return "iPhone 5s"
-//        case "iPhone7,2":                               return "iPhone 6"
-//        case "iPhone7,1":                               return "iPhone 6 Plus"
-//        case "iPhone8,1":                               return "iPhone 6s"
-//        case "iPhone8,2":                               return "iPhone 6s Plus"
-//        case "iPhone8,4":                               return "iPhone SE 1st generation"
-//        case "iPhone9,1", "iPhone9,3":                  return "iPhone 7"
-//        case "iPhone9,2", "iPhone9,4":                  return "iPhone 7 Plus"
-//        case "iPhone10,1", "iPhone10,4":                return "iPhone 8"
-//        case "iPhone10,2", "iPhone10,5":                return "iPhone 8 Plus"
-//        case "iPhone10,3", "iPhone10,6":                return "iPhone X"
-//        case "iPhone11,8":                              return "iPhone XR"
-//        case "iPhone11,2":                              return "iPhone XS"
-//        case "iPhone11,4", "iPhone11,6":                return "iPhone XS Max"
-//        case "iPhone12,1":                              return "iPhone 11"
-//        case "iPhone12,3":                              return "iPhone 11 Pro"
-//        case "iPhone12,5":                              return "iPhone 11 Pro Max"
-//        case "iPhone12,8":                              return "iPhone SE 2nd generation"
-//        case "iPhone13,1":                              return "iPhone 12 mini"
-//        case "iPhone13,2":                              return "iPhone 12"
-//        case "iPhone13,3":                              return "iPhone 12 Pro"
-//        case "iPhone13,4":                              return "iPhone 12 Pro Max"
-//        case "iPhone14,4":                              return "iPhone 13 mini"
-//        case "iPhone14,5":                              return "iPhone 13"
-//        case "iPhone14,2":                              return "iPhone 13 Pro"
-//        case "iPhone14,3":                              return "iPhone 13 Pro Max"
-//        case "iPhone14,6":                              return "iPhone SE 3rd generation"
-//        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
-//        case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
-//        case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"
-//        case "iPad4,1", "iPad4,2", "iPad4,3":           return "iPad Air"
-//        case "iPad5,3", "iPad5,4":                      return "iPad Air 2"
-//        case "iPad2,5", "iPad2,6", "iPad2,7":           return "iPad Mini"
-//        case "iPad4,4", "iPad4,5", "iPad4,6":           return "iPad Mini 2"
-//        case "iPad4,7", "iPad4,8", "iPad4,9":           return "iPad Mini 3"
-//        case "iPad5,1", "iPad5,2":                      return "iPad Mini 4"
-//        case "iPad6,3", "iPad6,4", "iPad6,7", "iPad6,8":return "iPad Pro"
-//        case "AppleTV5,3":                              return "Apple TV"
-//        case "i386", "x86_64":                          return "Simulator"
-//        default:                                        return identifier
-//        }
-//    }
-//
-//    var modelID: String {
-//        var systemInfo = utsname()
-//        uname(&systemInfo)
-//        let machineMirror = Mirror(reflecting: systemInfo.machine)
-//        let identifier = machineMirror.children.reduce("") { identifier, element in
-//            guard let value = element.value as? Int8, value != 0 else { return identifier }
-//            return identifier + String(UnicodeScalar(UInt8(value)))
-//        }
-//        return identifier
-//    }
-//
-//}
-
 
 public extension Array {
     

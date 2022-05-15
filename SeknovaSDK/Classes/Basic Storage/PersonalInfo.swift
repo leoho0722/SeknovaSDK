@@ -17,12 +17,13 @@ public class PersonalInfo: NSObject, Codable {
     public var phone: String? // 電話
     public var IsPhoneBinding: Bool = false // 電話是否綁定
     public var address: String? // 地址
-    public var gender: UInt8? // 性別
-    public var height: UInt8? // 身高
-    public var weight: UInt8? // 體重
-    public var ethnic: UInt8? // 種族
-    public var drink: UInt8? // 飲酒程度
+    public var gender: Int? // 性別
+    public var height: Int? // 身高
+    public var weight: Int? // 體重
+    public var ethnic: Int? // 種族
+    public var drink: Int? // 飲酒程度
     public var smoke: Bool = false // 是否吸菸
+    public var Check: Bool = false // 是否上傳雲端
     
     public func Validate() -> Bool {
         var isValidate = true

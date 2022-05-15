@@ -382,7 +382,7 @@ extension SDK_BluetoothService: CBPeripheralDelegate {
             }
 
             // 判斷是否需要繼續回補
-            if lastCoverIndex >= coverIdArray.last!{
+            if lastCoverIndex >= coverIdArray.last! {
                 // 回補結束
                 
                 // ***********過濾不需回傳的資料***********

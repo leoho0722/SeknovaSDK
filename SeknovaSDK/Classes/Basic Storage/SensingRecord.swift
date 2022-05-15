@@ -20,6 +20,7 @@ public class SensingRecord: NSObject, Codable {
     public var Battery: Int?
     public var SensorID: String?
     public var UserID: String?
-    public var isDisplay: Bool?
+    public var Check: Bool = false // 是否上傳雲端
+    public var isDisplay: Bool = false
     
 }

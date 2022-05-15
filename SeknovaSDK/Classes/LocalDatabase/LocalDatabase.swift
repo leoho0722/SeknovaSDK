@@ -382,6 +382,8 @@ public class CalibrationMode: Object {
     @objc public dynamic var FallenRate = ""
 }
 
+// MARK: - LocalDatabaseDelegate
+
 extension LocalDatabase: LocalDatabaseDelegate {
     
     public func AddRecord(Count: Int,
@@ -689,6 +691,739 @@ extension LocalDatabase: LocalDatabaseDelegate {
         SDK_Setting.shared.lastTimeZoneNumber = TimeZone.autoupdatingCurrent.secondsFromGMT() / 3600
     }
 
+}
+
+// MARK: - SDK Realm Data Table
+
+public class DB_SensingRecord: Object {
+    @objc public dynamic var Timestamp: Int64 = 0
+    @objc public dynamic var IndexID: Int = 0
+    public var RawData = List<Int>()
+    public var CalibrationData = List<Int>()
+    @objc public dynamic var Temperature: Int = 0
+    @objc public dynamic var Trend: Int = 0
+    @objc public dynamic var RSSI: Int = 0
+    @objc public dynamic var Battery: Int = 0
+    @objc public dynamic var SensorID: String = ""
+    @objc public dynamic var UserID: String = ""
+    @objc public dynamic var Check: Bool = false // 是否上傳雲端
+    @objc public dynamic var isDisplay: Bool = false
+}
+
+public class DB_EventTable: Object {
+    @objc public dynamic var Index: Int = 0 // 該筆事件的 ID
+    @objc public dynamic var TimeStamp: Int64 = 0 // 資料取得的時間 (時間戳)
+    @objc public dynamic var EventID: Int = 0 // 事件 ID
+    @objc public dynamic var EventValue: Int = 0 // 事件 Value
+    public var EventAttribute = List<String>() // 紀錄事件的 Attribute
+    @objc public dynamic var Note: String = ""
+    @objc public dynamic var Check: Bool = false // 是否上傳雲端
+}
+
+public class DB_AlertTable: Object {
+    @objc public dynamic var Timestamp: Int64 = 0 // 資料取得的時間 (時間戳)
+    @objc public dynamic var AlertID: Int = 0 // 警示事件 ID，對應到 ErrorCode
+    @objc public dynamic var AlertValue: Int = 0 // 警示事件 Value，對應到 ErrorValue
+    @objc public dynamic var Check: Bool = false // 是否上傳雲端
+}
+
+public class DB_PersonalInfo: Object {
+    @objc public dynamic var UserID: String = "" // 使用者 ID
+    @objc public dynamic var fname: String = "" // 姓名：名
+    @objc public dynamic var lname: String = "" // 姓名：姓
+    @objc public dynamic var birth: String = "" // 生日
+    @objc public dynamic var phone: String = "" // 電話
+    @objc public dynamic var IsPhoneBinding: Bool = false // 電話是否綁定
+    @objc public dynamic var address: String = "" // 地址
+    @objc public dynamic var gender: Int = 0 // 性別
+    @objc public dynamic var height: Int = 0 // 身高
+    @objc public dynamic var weight: Int = 0 // 體重
+    @objc public dynamic var ethnic: Int = 0 // 種族
+    @objc public dynamic var drink: Int = 0 // 飲酒程度
+    @objc public dynamic var smoke: Bool = false // 是否吸菸
+    @objc public dynamic var Check: Bool = false // 是否上傳雲端
+}
+
+public class DB_PersonalDynamicInfo: Object {
+    @objc public dynamic var UserID: String = "" // 使用者 ID
+    @objc public dynamic var Timestamp: Int64 = 0 // 資料取得的時間 (時間戳)
+    @objc public dynamic var BodyFatPercentage: Int = 0 // 體脂肪率
+    @objc public dynamic var HbA1c: Float = 0.0 // 糖化血色素
+    @objc public dynamic var SYS: Int = 0 // 收縮壓
+    @objc public dynamic var DIA: Int = 0 // 舒張 = 0
+    @objc public dynamic var TC: Int = 0 // 總膽固醇
+    @objc public dynamic var HDLC: Int = 0 // 高密度脂蛋白膽固醇
+    @objc public dynamic var LDL: Int = 0 // 低密度脂蛋白
+    @objc public dynamic var Diabletes: Int = 0 // 有無糖尿病
+    @objc public dynamic var CRE: Float = 0.0 // 肌酸酐
+}
+
+public class DB_GlucoseCorrectParam: Object {
+    @objc public dynamic var ModeID: Int = 0
+    @objc public dynamic var RawData2BGBias: Int = 100
+    @objc public dynamic var BGBias: Int = 100
+    @objc public dynamic var BGLow: Int = 40
+    @objc public dynamic var BGHigh: Int = 400
+    @objc public dynamic var MapRate: Int = 1
+    @objc public dynamic var ThresholdRise: Int = 50
+    @objc public dynamic var ThresholdFall: Int = 50
+    @objc public dynamic var RiseRate: Int = 100
+    @objc public dynamic var FallenRate: Int = 100
+}
+
+// MARK: LocalDatabaseManagerDelegate
+
+extension LocalDatabase: LocalDatabaseManagerDelegate {
+    
+    // MARK: SensingRecord
+    
+    public func AddRecord(record: SensingRecord) {
+        let realm = try! Realm()
+        let lastRecords = realm.objects(DB_SensingRecord.self).filter("Timestamp == \(record.Timestamp) AND IndexID == \(record.IndexID)")
+        if lastRecords.count == 0 {
+            let records = DB_SensingRecord()
+            
+            guard let Timestamp = record.Timestamp else { return }
+            records.Timestamp = Timestamp
+            
+            guard let IndexID = record.IndexID else { return }
+            records.IndexID = IndexID
+            
+            guard let rawData = record.RawData else { return }
+            for i in 0 ..< rawData.count {
+                records.RawData.append(rawData[i])
+            }
+            
+            guard let calibrationData = record.CalibrationData else { return }
+            for i in 0 ..< calibrationData.count {
+                records.CalibrationData.append(calibrationData[i])
+            }
+            
+            guard let Temperature = record.Temperature else { return }
+            records.Temperature = Temperature
+            
+            guard let Trend = record.Trend else { return }
+            records.Trend = Trend
+            
+            guard let RSSI = record.RSSI else { return }
+            records.RSSI = RSSI
+            
+            guard let Battery = record.Battery else { return }
+            records.Battery = Battery
+            
+            guard let SensorID = record.SensorID else { return }
+            records.SensorID = SensorID
+            
+            guard let UserID = record.UserID else { return }
+            records.UserID = UserID
+            
+            records.Check = record.Check
+            
+            records.isDisplay = record.isDisplay
+            do {
+                try! realm.write {
+                    realm.add(records)
+                    print("Realm AddRecord Success.")
+                }
+            } catch let error as NSError {
+                print("Realm AddRecord Failed, Error: \(error)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+            let time = dateFormatter(format: "MM/dd HH:mm:ss", date: Date())
+            print("\(time) Realm DB Insert Record Index =  \(record.IndexID)")
+        } else {
+            let time = dateFormatter(format: "MM/dd HH:mm:ss", date: Date())
+            print("\(time) Realm DB Records Duplicate T =  \(time)")
+        }
+    }
+    
+    public func UpdateRecord(record: SensingRecord) {
+        let realm = try! Realm()
+        let time = dateFormatter(format: "MM/dd HH:mm:ss", date: Date())
+        let refresh = realm.objects(DB_SensingRecord.self).filter("IndexID == \(record.IndexID)")
+        if refresh.count > 0 {
+            do {
+                try! realm.write {
+                    guard let Timestamp = record.Timestamp else { return }
+                    refresh[0].Timestamp = Timestamp
+                    
+                    guard let IndexID = record.IndexID else { return }
+                    refresh[0].IndexID = IndexID
+                    
+                    guard let rawData = record.RawData else { return }
+                    refresh[0].RawData.removeAll()
+                    for i in 0 ..< rawData.count {
+                        refresh[0].RawData.append(rawData[i])
+                    }
+                    
+                    guard let calibrationData = record.CalibrationData else { return }
+                    refresh[0].CalibrationData.removeAll()
+                    for i in 0 ..< calibrationData.count {
+                        refresh[0].CalibrationData.append(calibrationData[i])
+                    }
+                    
+                    guard let Temperature = record.Temperature else { return }
+                    refresh[0].Temperature = Temperature
+                    
+                    guard let Trend = record.Trend else { return }
+                    refresh[0].Trend = Trend
+                    
+                    guard let RSSI = record.RSSI else { return }
+                    refresh[0].RSSI = RSSI
+                    
+                    guard let Battery = record.Battery else { return }
+                    refresh[0].Battery = Battery
+                    
+                    guard let SensorID = record.SensorID else { return }
+                    refresh[0].SensorID = SensorID
+                    
+                    guard let UserID = record.UserID else { return }
+                    refresh[0].UserID = UserID
+                    
+                    refresh[0].Check = record.Check
+                    
+                    refresh[0].isDisplay = record.isDisplay
+                    print("\(time) Realm2 ReWrite Data Index:\(record.IndexID)")
+                    print("Realm UpdateRecord Success.")
+                }
+            } catch let error as NSError {
+                print("Realm UpdateRecord Failed, Error: \(error)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func GetRecords(userID: String, startTime: Int64, endTime: Int64) -> [SensingRecord] {
+        let realm = try! Realm()
+        var sensingRecordArray = [SensingRecord]()
+        let results = realm.objects(DB_SensingRecord.self).filter("UserID == \(userID) AND Timestamp BETWEEN {\(startTime), \(endTime)}")
+        if results.count > 0 {
+            for i in 0 ..< results.count {
+                let sensingRecord = SensingRecord()
+                sensingRecord.Timestamp = results[i].Timestamp
+                sensingRecord.IndexID = results[i].IndexID
+                sensingRecord.RawData?.removeAll()
+                for j in 0 ..< results[i].RawData.count {
+                    sensingRecord.RawData?.append(results[i].RawData[j])
+                }
+                sensingRecord.CalibrationData?.removeAll()
+                for j in 0 ..< results[i].CalibrationData.count {
+                    sensingRecord.CalibrationData?.append(results[i].CalibrationData[j])
+                }
+                sensingRecord.Temperature = results[i].Temperature
+                sensingRecord.Trend = results[i].Trend
+                sensingRecord.RSSI = results[i].RSSI
+                sensingRecord.Battery = results[i].Battery
+                sensingRecord.SensorID = results[i].SensorID
+                sensingRecord.UserID = results[i].UserID
+                sensingRecord.Check = results[i].Check
+                sensingRecord.isDisplay = results[i].isDisplay
+                sensingRecordArray.append(sensingRecord)
+            }
+        }
+        return sensingRecordArray
+    }
+
+    public func GetRecords(userID: String, Time: Int64) -> SensingRecord {
+        let realm = try! Realm()
+        let sensingRecord = SensingRecord()
+        let results = realm.objects(DB_SensingRecord.self).filter("UserID == \(userID) AND Timestamp == \(Time)")
+        if results.count > 0 {
+            sensingRecord.Timestamp = results[0].Timestamp
+            sensingRecord.IndexID = results[0].IndexID
+            sensingRecord.RawData?.removeAll()
+            for i in 0 ..< results[0].RawData.count {
+                sensingRecord.RawData?.append(results[0].RawData[i])
+            }
+            sensingRecord.CalibrationData?.removeAll()
+            for i in 0 ..< results[0].CalibrationData.count {
+                sensingRecord.CalibrationData?.append(results[0].CalibrationData[i])
+            }
+            sensingRecord.Temperature = results[0].Temperature
+            sensingRecord.Trend = results[0].Trend
+            sensingRecord.RSSI = results[0].RSSI
+            sensingRecord.Battery = results[0].Battery
+            sensingRecord.SensorID = results[0].SensorID
+            sensingRecord.UserID = results[0].UserID
+            sensingRecord.Check = results[0].Check
+            sensingRecord.isDisplay = results[0].isDisplay
+        }
+        return sensingRecord
+    }
+    
+    // MARK: - EventTable
+    
+    public func AddEvent(event: EventTable) {
+        let realm = try! Realm()
+        let lastRecords = realm.objects(DB_EventTable.self).filter("Timestamp == \(event.TimeStamp)")
+        if lastRecords.count == 0 {
+            let eventTable = DB_EventTable()
+            
+            guard let Index = event.Index else { return }
+            eventTable.Index = Index
+            
+            guard let TimeStamp = event.TimeStamp else { return }
+            eventTable.TimeStamp = TimeStamp
+            
+            guard let EventID = event.EventID else { return }
+            eventTable.EventID = EventID
+            
+            guard let EventValue = event.EventValue else { return }
+            eventTable.EventValue = EventValue
+            
+            guard let eventAttribute = event.EventAttribute else { return }
+            for i in 0 ..< eventAttribute.count {
+                eventTable.EventAttribute.append(eventAttribute[i])
+            }
+            
+            guard let Note = event.Note else { return }
+            eventTable.Note = Note
+            
+            eventTable.Check = event.Check
+            do {
+                try! realm.write {
+                    realm.add(eventTable)
+                    print("Realm AddEvent Success.")
+                }
+            } catch let error as NSError {
+                print("Realm AddEvent Failed, Error: \(error)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func UpdateEvent(event: EventTable) {
+        let realm = try! Realm()
+        let results = realm.objects(DB_EventTable.self).filter("Index == \(event.Index) AND Timestamp == \(event.TimeStamp)")
+        if results.count > 0 {
+            do {
+                try! realm.write {
+                    guard let Index = event.Index else { return }
+                    results[0].Index = Index
+                    
+                    guard let TimeStamp = event.TimeStamp else { return }
+                    results[0].TimeStamp = TimeStamp
+                    
+                    guard let EventID = event.EventID else { return }
+                    results[0].EventID = EventID
+                    
+                    guard let EventValue = event.EventValue else { return }
+                    results[0].EventValue = EventValue
+                    
+                    guard let eventAttribute = event.EventAttribute else { return }
+                    results[0].EventAttribute.removeAll()
+                    for i in 0 ..< eventAttribute.count {
+                        results[0].EventAttribute.append(eventAttribute[i])
+                    }
+                    
+                    guard let Note = event.Note else { return }
+                    results[0].Note = Note
+                    
+                    results[0].Check = event.Check
+                    print("Realm UpdateEvent Success.")
+                }
+            } catch let error as NSError {
+                print("Realm UpdateEvent Failed, Error: \(error)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func GetEvents(userID: String, startTime: Int64, endTime: Int64) -> [EventTable] {
+        let realm = try! Realm()
+        var eventTableArray = [EventTable]()
+        let results = realm.objects(DB_EventTable.self).filter("UserID == \(userID) AND Timestamp BETWEEN {\(startTime), \(endTime)}")
+        if results.count > 0 {
+            for i in 0 ..< results.count {
+                let eventTable = EventTable()
+                eventTable.Index = results[i].Index
+                eventTable.TimeStamp = results[i].TimeStamp
+                eventTable.EventID = results[i].EventID
+                eventTable.EventValue = results[i].EventValue
+                for j in 0 ..< results[i].EventAttribute.count {
+                    eventTable.EventAttribute?.append(results[i].EventAttribute[j])
+                }
+                eventTable.Note = results[i].Note
+                eventTable.Check = results[i].Check
+                eventTableArray.append(eventTable)
+            }
+        }
+        return eventTableArray
+    }
+    
+    // MARK: - AlertTable
+    
+    public func AddAlert(alert: AlertTable) {
+        let realm = try! Realm()
+        let lastRecords = realm.objects(DB_AlertTable.self).filter("Timestamp == \(alert.Timestamp)")
+        if (lastRecords.count == 0) {
+            let alertTable = DB_AlertTable()
+            
+            guard let AlertID = alert.AlertID else { return }
+            alertTable.AlertID = AlertID
+            
+            guard let AlertValue = alert.AlertValue else { return }
+            alertTable.AlertValue = AlertValue
+            
+            guard let Timestamp = alert.Timestamp else { return }
+            alertTable.Timestamp = Timestamp
+            
+            alertTable.Check = alert.Check
+            do {
+                try! realm.write {
+                    realm.add(alertTable)
+                    print("Realm AddAlert Success.")
+                }
+            } catch let error as NSError {
+                print("Realm AddAlert Failed, Error: \(error.localizedDescription)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func GetAlerts(userID: String, startTime: Int64, endTime: Int64) -> [AlertTable] {
+        let realm = try! Realm()
+        var alertTableArray = [AlertTable]()
+        let results = realm.objects(DB_AlertTable.self).filter("UserID == \(userID) AND Timestamp BETWEEN {\(startTime), \(endTime)}")
+        if results.count > 0 {
+            for i in 0 ..< results.count {
+                let alertTable = AlertTable()
+                alertTable.AlertID = results[i].AlertID
+                alertTable.AlertValue = results[i].AlertValue
+                alertTable.Timestamp = results[i].Timestamp
+                alertTable.Check = results[i].Check
+                alertTableArray.append(alertTable)
+            }
+        }
+        return alertTableArray
+    }
+    
+    // MARK: - PersonalInfo
+    
+    public func AddPersonalInfo(info: PersonalInfo) {
+        let realm = try! Realm()
+        let lastRecords = realm.objects(DB_PersonalInfo.self).filter("UserID == \(info.UserID)")
+        if lastRecords.count == 0 {
+            let personalInfo = DB_PersonalInfo()
+            
+            guard let UserID = info.UserID else { return }
+            personalInfo.UserID = UserID
+            
+            guard let FirstName = info.fname else { return }
+            personalInfo.fname = FirstName
+            
+            guard let LastName = info.lname else { return }
+            personalInfo.lname = LastName
+            
+            guard let Birthday = info.birth else { return }
+            personalInfo.birth = Birthday
+            
+            guard let Phone = info.phone else { return }
+            personalInfo.phone = Phone
+            
+            personalInfo.IsPhoneBinding = info.IsPhoneBinding
+            
+            guard let Address = info.address else { return }
+            personalInfo.address = Address
+            
+            guard let Gender = info.gender else { return }
+            personalInfo.gender = Gender
+            
+            guard let Height = info.height else { return }
+            personalInfo.height = Height
+            
+            guard let Weight = info.weight else { return }
+            personalInfo.weight = Weight
+            
+            guard let Ethnic = info.ethnic else { return }
+            personalInfo.ethnic = Ethnic
+            
+            guard let Drink = info.drink else { return }
+            personalInfo.drink = Drink
+            
+            personalInfo.smoke = info.smoke
+            
+            personalInfo.Check = info.Check
+            do {
+                try! realm.write {
+                    realm.add(personalInfo)
+                    print("Realm AddPersonalInfo Success.")
+                }
+            } catch let error as NSError {
+                print("Realm AddPersonalInfo Failed, Error: \(error.localizedDescription)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func UpdatePersonalInfo(info: PersonalInfo) {
+        let realm = try! Realm()
+        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == \(info.UserID)")
+        if results.count > 0 {
+            do {
+                try! realm.write {
+                    guard let UserID = info.UserID else { return }
+                    results[0].UserID = UserID
+                    
+                    guard let FirstName = info.fname else { return }
+                    results[0].fname = FirstName
+                    
+                    guard let LastName = info.lname else { return }
+                    results[0].lname = LastName
+                    
+                    guard let Birthday = info.birth else { return }
+                    results[0].birth = Birthday
+                    
+                    guard let Phone = info.phone else { return }
+                    results[0].phone = Phone
+                    
+                    results[0].IsPhoneBinding = info.IsPhoneBinding
+                    
+                    guard let Address = info.address else { return }
+                    results[0].address = Address
+                    
+                    guard let Gender = info.gender else { return }
+                    results[0].gender = Gender
+                    
+                    guard let Height = info.height else { return }
+                    results[0].height = Height
+                    
+                    guard let Weight = info.weight else { return }
+                    results[0].weight = Weight
+                    
+                    guard let Ethnic = info.ethnic else { return }
+                    results[0].ethnic = Ethnic
+                    
+                    guard let Drink = info.drink else { return }
+                    results[0].drink = Drink
+                    
+                    results[0].smoke = info.smoke
+                    
+                    results[0].Check = info.Check
+                    print("Realm UpdatePersonalInfo Success.")
+                }
+            } catch let error as NSError {
+                print("Realm UpdatePersonalInfo Failed, Error: \(error.localizedDescription)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func GetPersonalInfo(userID: String) -> PersonalInfo {
+        let realm = try! Realm()
+        let personalInfo = PersonalInfo()
+        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == \(userID)")
+        if results.count > 0 {
+            personalInfo.UserID = results[0].UserID
+            personalInfo.fname = results[0].fname
+            personalInfo.lname = results[0].lname
+            personalInfo.birth = results[0].birth
+            personalInfo.phone = results[0].phone
+            personalInfo.IsPhoneBinding = results[0].IsPhoneBinding
+            personalInfo.address = results[0].address
+            personalInfo.gender = results[0].gender
+            personalInfo.height = results[0].height
+            personalInfo.weight = results[0].weight
+            personalInfo.ethnic = results[0].ethnic
+            personalInfo.drink = results[0].drink
+            personalInfo.smoke = results[0].smoke
+            personalInfo.Check = results[0].Check
+        }
+        return personalInfo
+    }
+    
+    // MARK: - PersonalDynamicInfo
+    
+    public func AddPersonDynamicInfo(info: PersonalDynamicInfo) {
+        let realm = try! Realm()
+        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == \(info.UserID)")
+        if lastRecords.count == 0 {
+            let personalDynamicInfo = DB_PersonalDynamicInfo()
+            
+            guard let UserID = info.UserID else { return }
+            personalDynamicInfo.UserID = UserID
+            
+            guard let Timestamp = info.Timestamp else { return }
+            personalDynamicInfo.Timestamp = Timestamp
+            
+            guard let BodyFatPercentage = info.BodyFatPercentage else { return }
+            personalDynamicInfo.BodyFatPercentage = BodyFatPercentage
+            
+            guard let HbA1c = info.HbA1c else { return }
+            personalDynamicInfo.HbA1c = HbA1c
+            
+            guard let SYS = info.SYS else { return }
+            personalDynamicInfo.SYS = SYS
+            
+            guard let DIA = info.DIA else { return }
+            personalDynamicInfo.DIA = DIA
+            
+            guard let TC = info.TC else { return }
+            personalDynamicInfo.TC = TC
+            
+            guard let HDLC = info.HDLC else { return }
+            personalDynamicInfo.HDLC = HDLC
+            
+            guard let LDL = info.LDL else { return }
+            personalDynamicInfo.LDL = LDL
+            
+            guard let Diabletes = info.Diabletes else { return }
+            personalDynamicInfo.Diabletes = Diabletes
+            
+            guard let CRE = info.CRE else { return }
+            personalDynamicInfo.CRE = CRE
+            do {
+                try! realm.write {
+                    realm.add(personalDynamicInfo)
+                    print("Realm AddPersonDynamicInfo Success.")
+                }
+            } catch let error as NSError {
+                print("Realm AddPersonDynamicInfo Failed, Error: \(error.localizedDescription)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func UpdatePersonDynamicInfo(info: PersonalDynamicInfo) {
+        let realm = try! Realm()
+        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == \(info.UserID)")
+        if results.count > 0 {
+            do {
+                try! realm.write {
+                    guard let UserID = info.UserID else { return }
+                    results[0].UserID = UserID
+                    
+                    guard let Timestamp = info.Timestamp else { return }
+                    results[0].Timestamp = Timestamp
+                    
+                    guard let BodyFatPercentage = info.BodyFatPercentage else { return }
+                    results[0].BodyFatPercentage = BodyFatPercentage
+                    
+                    guard let HbA1c = info.HbA1c else { return }
+                    results[0].HbA1c = HbA1c
+                    
+                    guard let SYS = info.SYS else { return }
+                    results[0].SYS = SYS
+                    
+                    guard let DIA = info.DIA else { return }
+                    results[0].DIA = DIA
+                    
+                    guard let TC = info.TC else { return }
+                    results[0].TC = TC
+                    
+                    guard let HDLC = info.HDLC else { return }
+                    results[0].HDLC = HDLC
+                    
+                    guard let LDL = info.LDL else { return }
+                    results[0].LDL = LDL
+                    
+                    guard let Diabletes = info.Diabletes else { return }
+                    results[0].Diabletes = Diabletes
+                    
+                    guard let CRE = info.CRE else { return }
+                    results[0].CRE = CRE
+                    print("Realm UpdatePersonDynamicInfo Success.")
+                }
+            } catch let error as NSError {
+                print("Realm UpdatePersonDynamicInfo Failed, Error: \(error.localizedDescription)")
+            }
+            print("File URL:\(realm.configuration.fileURL!)")
+        }
+    }
+    
+    public func GetPersonDynamicInfo(userID: String) -> [PersonalDynamicInfo] {
+        let realm = try! Realm()
+        var personalDynamicInfoArray = [PersonalDynamicInfo]()
+        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == \(userID)")
+        if results.count > 0 {
+            for i in 0 ..< results.count {
+                let personalDynamicInfo = PersonalDynamicInfo()
+                personalDynamicInfo.UserID = results[i].UserID
+                personalDynamicInfo.Timestamp = results[i].Timestamp
+                personalDynamicInfo.BodyFatPercentage = results[i].BodyFatPercentage
+                personalDynamicInfo.HbA1c = results[i].HbA1c
+                personalDynamicInfo.SYS = results[i].SYS
+                personalDynamicInfo.DIA = results[i].DIA
+                personalDynamicInfo.TC = results[i].TC
+                personalDynamicInfo.HDLC = results[i].HDLC
+                personalDynamicInfo.LDL = results[i].LDL
+                personalDynamicInfo.Diabletes = results[i].Diabletes
+                personalDynamicInfo.CRE = results[i].CRE
+                personalDynamicInfoArray.append(personalDynamicInfo)
+            }
+        }
+        return personalDynamicInfoArray
+    }
+    
+    // MARK: - GlucoseCorrectParam
+    
+    public func UpdateGlucoseCorrectParam(event: GlucoseCorrectParam) {
+        let realm = try! Realm()
+        let results = realm.objects(DB_GlucoseCorrectParam.self)
+        if results.count > 0 {
+            do {
+                try! realm.write {
+                    results[0].ModeID = event.ModeID ?? 0
+                    results[0].RawData2BGBias = event.RawData2BGBias ?? 100
+                    results[0].BGBias = event.BGBias ?? 100
+                    results[0].BGLow = event.BGLow ?? 40
+                    results[0].BGHigh = event.BGHigh ?? 400
+                    results[0].MapRate = event.MapRate ?? 1
+                    results[0].ThresholdRise = event.ThresholdRise ?? 50
+                    results[0].ThresholdFall = event.ThresholdFall ?? 50
+                    results[0].RiseRate = event.RiseRate ?? 100
+                    results[0].FallenRate = event.FallenRate ?? 100
+                    print("Realm UpdateGlucoseCorrectParam Success.")
+                }
+                DataCorrectionAlgo.share.UpdateAlgoParam(param: event)
+            } catch let error as NSError {
+                print("Realm UpdateGlucoseCorrectParam Failed, Error: \(error.localizedDescription)")
+            }
+        } else {
+            if (SDK_Setting.shared.isFirstLogin) { print("使用者首次登入") }
+            let param = DB_GlucoseCorrectParam()
+            param.ModeID = event.ModeID ?? 0
+            param.RawData2BGBias = event.RawData2BGBias ?? 100
+            param.BGBias = event.BGBias ?? 100
+            param.BGLow = event.BGLow ?? 40
+            param.BGHigh = event.BGHigh ?? 400
+            param.MapRate = event.MapRate ?? 1
+            param.ThresholdRise = event.ThresholdRise ?? 50
+            param.ThresholdFall = event.ThresholdFall ?? 50
+            param.RiseRate = event.RiseRate ?? 100
+            param.FallenRate = event.FallenRate ?? 100
+            do {
+                try! realm.write {
+                    realm.add(param)
+                    print("Realm AddGlucoseCorrectParam Success.")
+                }
+                DataCorrectionAlgo.share.UpdateAlgoParam(param: event)
+            } catch let error as NSError {
+                print("Realm AddGlucoseCorrectParam Failed, Error: \(error.localizedDescription)")
+            }
+        }
+        print("File URL:\(realm.configuration.fileURL!)")
+    }
+    
+    public func GetGlucoseCorrectParam(userID: String) -> GlucoseCorrectParam {
+        let realm = try! Realm()
+        let glucoseCorrectParam = GlucoseCorrectParam()
+        let results = realm.objects(DB_GlucoseCorrectParam.self)
+        if results.count > 0 {
+            glucoseCorrectParam.ModeID = results[0].ModeID
+            glucoseCorrectParam.RawData2BGBias = results[0].RawData2BGBias
+            glucoseCorrectParam.BGBias = results[0].BGBias
+            glucoseCorrectParam.BGLow = results[0].BGLow
+            glucoseCorrectParam.BGHigh = results[0].BGHigh
+            glucoseCorrectParam.MapRate = results[0].MapRate
+            glucoseCorrectParam.ThresholdRise = results[0].ThresholdRise
+            glucoseCorrectParam.ThresholdFall = results[0].ThresholdFall
+            glucoseCorrectParam.RiseRate = results[0].RiseRate
+            glucoseCorrectParam.FallenRate = results[0].FallenRate
+        }
+        return glucoseCorrectParam
+    }
+    
 }
 
 extension LocalDatabase {

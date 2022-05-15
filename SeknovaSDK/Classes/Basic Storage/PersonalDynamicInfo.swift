@@ -20,6 +20,7 @@ public class PersonalDynamicInfo: NSObject, Codable {
     public var TC: Int? // 總膽固醇
     public var HDLC: Int? // 高密度脂蛋白膽固醇
     public var LDL: Int? // 低密度脂蛋白
-    public var Diabletes: UInt8? // 有無糖尿病
+    public var Diabletes: Int? // 有無糖尿病
     public var CRE: Float? // 肌酸酐
+    
 }

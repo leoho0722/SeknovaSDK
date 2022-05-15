@@ -11,6 +11,7 @@ import Foundation
 public class GlucoseCorrectParam: NSObject, Codable {
     
     // 血糖校正算法參數
+    public var ModeID: Int?
     public var RawData2BGBias: Int?
     public var BGBias: Int?
     public var BGLow: Int?

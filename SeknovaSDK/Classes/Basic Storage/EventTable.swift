@@ -16,5 +16,6 @@ public class EventTable: NSObject, Codable {
     public var EventID: Int? // 事件 ID
     public var EventValue: Int? // 事件 Value
     public var EventAttribute: [String]? // 紀錄事件的 Attribute
-    
+    public var Note: String?
+    public var Check: Bool = false // 是否上傳雲端
 }

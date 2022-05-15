@@ -14,5 +14,5 @@ public class AlertTable: NSObject, Codable {
     public var Timestamp: Int64? // 資料取得的時間 (時間戳)
     public var AlertID: Int? // 警示事件 ID，對應到 ErrorCode
     public var AlertValue: Int? // 警示事件 Value，對應到 ErrorValue
-    
+    public var Check: Bool = false // 是否上傳雲端
 }
