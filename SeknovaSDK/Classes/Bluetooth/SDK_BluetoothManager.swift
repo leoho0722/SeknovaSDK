@@ -283,7 +283,7 @@ extension SDK_BluetoothService: CBPeripheralDelegate {
                 SDK_Setting.shared.nextCalibrateInterval = 0
                 SDK_Setting.shared.isCalibrated = false
                 SDK_Setting.shared.resetCount = resetCount
-                LocalDatabase.shared.saveRecordCountData()
+//                LocalDatabase.shared.saveRecordCountData()
                 let timestamp = Int(NSDate().timeIntervalSince1970)
                 let timeZoneInt = TimeZone.autoupdatingCurrent.secondsFromGMT() / 3600
                 SDK_Setting.shared.lastTimeZoneNumber = timeZoneInt
@@ -303,7 +303,7 @@ extension SDK_BluetoothService: CBPeripheralDelegate {
                         print("變更FirstRccordCount")
                         SDK_Setting.shared.firstRecordCount = count
                     }
-                    LocalDatabase.shared.saveRecordCountData()
+//                    LocalDatabase.shared.saveRecordCountData()
                     let timestamp = Int(NSDate().timeIntervalSince1970)
                     let UtcData = 0.int2StrHex8() + timestamp.int2StrHex8() + count
                     SDK_Setting.shared.nextCalibrateInterval = 0
