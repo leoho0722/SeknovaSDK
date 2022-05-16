@@ -72,7 +72,7 @@ public class CloudParseManager: NSObject {
             "EventValue": input.EventValue,
             "EventRecordTime": input.TimeStamp?.timeStampToDate().convert2UtcStr(),
             "EventAttribute": input.EventAttribute,
-            "Note": input.EventAttribute?.last
+            "Note": input.Note
         ]
         let eventUploadJSON = try? JSONSerialization.data(withJSONObject: dic1 ?? [:], options: .prettyPrinted)
 //        exportJson(jsonData: eventUploadJSON, fileName: "EventUpload")
@@ -194,6 +194,7 @@ public class CloudParseManager: NSObject {
         personalInfo.ethnic = Int((jsonRsp?.Race)!)
         personalInfo.drink = Int((jsonRsp?.Liquor)!)
         personalInfo.smoke = (Int((jsonRsp?.Smoke)!) == 1) ? true : false
+        personalInfo.Check = true
 
 //        // 下面是用來檢查是否有正確 Parse 成 PersonalInfo
 //        print("personalInfo.UserID:: \(personalInfo.UserID)")
@@ -209,7 +210,7 @@ public class CloudParseManager: NSObject {
 //        print("personalInfo.ethnic:: \(personalInfo.ethnic)")
 //        print("personalInfo.drink:: \(personalInfo.drink)")
 //        print("personalInfo.smoke:: \(personalInfo.smoke)")
-        
+//        print("personalInfo.Check:: \(personalInfo.Check)")
         return personalInfo
     }
     
@@ -221,13 +222,15 @@ public class CloudParseManager: NSObject {
         var eventTableArray = [EventTable]()
         if let eventCount = jsonRsp?.Events?.count {
             for i in 0 ..< eventCount {
-                if let id = jsonRsp?.Events?[i].ID, let dateTime = jsonRsp?.Events?[i].DateTime, let eventID = jsonRsp?.Events?[i].EventID, let eventValue = jsonRsp?.Events?[i].EventValue, let eventAttribue = jsonRsp?.Events?[i].EventAttribute {
+                if let id = jsonRsp?.Events?[i].ID, let dateTime = jsonRsp?.Events?[i].DateTime, let eventID = jsonRsp?.Events?[i].EventID, let eventValue = jsonRsp?.Events?[i].EventValue, let eventAttribue = jsonRsp?.Events?[i].EventAttribute, let note = jsonRsp?.Events?[i].Note {
                     let eventTable = EventTable()
                     eventTable.Index = id
                     eventTable.TimeStamp = Int64(dateTime.shiftUtc2LocalTZ().str2Date().timeIntervalSince1970)
                     eventTable.EventID = eventID
                     eventTable.EventValue = eventValue
                     eventTable.EventAttribute = eventAttribue
+                    eventTable.Note = note
+                    eventTable.Check = true
                     eventTableArray.append(eventTable)
                 } else {
                     print("Parse EventTable Failed！")
@@ -244,7 +247,9 @@ public class CloudParseManager: NSObject {
 //            print("eventTableArray\(i+1)_DateTime:: \(eventTableArray[i].TimeStamp?.timeStampToDate().convert2UtcStr())")
 //            print("eventTableArray\(i+1)_EventID:: \(eventTableArray[i].EventID)")
 //            print("eventTableArray\(i+1)_EventValue:: \(eventTableArray[i].EventValue)")
-//            print("eventTableArray\(i+1)_EventAttribute:: \(eventTableArray[i].EventAttribute)\n\n")
+//            print("eventTableArray\(i+1)_EventAttribute:: \(eventTableArray[i].EventAttribute)")
+//            print("eventTableArray\(i+1)_Note:: \(eventTableArray[i].Note)")
+//            print("eventTableArray\(i+1)_Check:: \(eventTableArray[i].Check)\n\n")
 //        }
         
         return eventTableArray
