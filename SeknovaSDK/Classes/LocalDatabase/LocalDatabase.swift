@@ -783,38 +783,68 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if lastRecords.count == 0 {
             let records = DB_SensingRecord()
             
-            guard let Timestamp = record.Timestamp else { return }
+            guard let Timestamp = record.Timestamp else {
+                print("Realm AddRecord.Timestamp Failed.")
+                return
+            }
             records.Timestamp = Timestamp
             
-            guard let IndexID = record.IndexID else { return }
+            guard let IndexID = record.IndexID else {
+                print("Realm AddRecord.IndexID Failed.")
+                return
+            }
             records.IndexID = IndexID
             
-            guard let rawData = record.RawData else { return }
+            guard let rawData = record.RawData else {
+                print("Realm AddRecord.RawData Failed.")
+                return
+            }
             for i in 0 ..< rawData.count {
                 records.RawData.append(rawData[i])
             }
             
-            guard let calibrationData = record.CalibrationData else { return }
+            guard let calibrationData = record.CalibrationData else {
+                print("Realm AddRecord.CalibrationData Failed.")
+                return
+            }
             for i in 0 ..< calibrationData.count {
                 records.CalibrationData.append(calibrationData[i])
             }
             
-            guard let Temperature = record.Temperature else { return }
+            guard let Temperature = record.Temperature else {
+                print("Realm AddRecord.Temperature Failed.")
+                return
+            }
             records.Temperature = Temperature
             
-            guard let Trend = record.Trend else { return }
+            guard let Trend = record.Trend else {
+                print("Realm AddRecord.Trend Failed.")
+                return
+            }
             records.Trend = Trend
             
-            guard let RSSI = record.RSSI else { return }
+            guard let RSSI = record.RSSI else {
+                print("Realm AddRecord.RSSI Failed.")
+                return
+            }
             records.RSSI = RSSI
             
-            guard let Battery = record.Battery else { return }
+            guard let Battery = record.Battery else {
+                print("Realm AddRecord.Battery Failed.")
+                return
+            }
             records.Battery = Battery
             
-            guard let SensorID = record.SensorID else { return }
+            guard let SensorID = record.SensorID else {
+                print("Realm AddRecord.SensorID Failed.")
+                return
+            }
             records.SensorID = SensorID
             
-            guard let UserID = record.UserID else { return }
+            guard let UserID = record.UserID else {
+                print("Realm AddRecord.UserID Failed.")
+                return
+            }
             records.UserID = UserID
             
             records.Check = record.Check
@@ -825,10 +855,9 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     realm.add(records)
                     print("Realm AddRecord Success.")
                 }
-            } catch let error as NSError {
-                print("Realm AddRecord Failed, Error: \(error)")
+            } catch {
+                print("Realm AddRecord Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
             let time = dateFormatter(format: "MM/dd HH:mm:ss", date: Date())
             print("\(time) Realm DB Insert Record Index =  \(record.IndexID)")
         } else {
@@ -844,40 +873,70 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if refresh.count > 0 {
             do {
                 try! realm.write {
-                    guard let Timestamp = record.Timestamp else { return }
+                    guard let Timestamp = record.Timestamp else {
+                        print("Realm UpdateRecord.Timestamp Failed.")
+                        return
+                    }
                     refresh[0].Timestamp = Timestamp
                     
-                    guard let IndexID = record.IndexID else { return }
+                    guard let IndexID = record.IndexID else {
+                        print("Realm UpdateRecord.IndexID Failed.")
+                        return
+                    }
                     refresh[0].IndexID = IndexID
                     
-                    guard let rawData = record.RawData else { return }
+                    guard let rawData = record.RawData else {
+                        print("Realm UpdateRecord.RawData Failed.")
+                        return
+                    }
                     refresh[0].RawData.removeAll()
                     for i in 0 ..< rawData.count {
                         refresh[0].RawData.append(rawData[i])
                     }
                     
-                    guard let calibrationData = record.CalibrationData else { return }
+                    guard let calibrationData = record.CalibrationData else {
+                        print("Realm UpdateRecord.CalibrationData Failed.")
+                        return
+                    }
                     refresh[0].CalibrationData.removeAll()
                     for i in 0 ..< calibrationData.count {
                         refresh[0].CalibrationData.append(calibrationData[i])
                     }
                     
-                    guard let Temperature = record.Temperature else { return }
+                    guard let Temperature = record.Temperature else {
+                        print("Realm UpdateRecord.Temperature Failed.")
+                        return
+                    }
                     refresh[0].Temperature = Temperature
                     
-                    guard let Trend = record.Trend else { return }
+                    guard let Trend = record.Trend else {
+                        print("Realm UpdateRecord.Trend Failed.")
+                        return
+                    }
                     refresh[0].Trend = Trend
                     
-                    guard let RSSI = record.RSSI else { return }
+                    guard let RSSI = record.RSSI else {
+                        print("Realm UpdateRecord.RSSI Failed.")
+                        return
+                    }
                     refresh[0].RSSI = RSSI
                     
-                    guard let Battery = record.Battery else { return }
+                    guard let Battery = record.Battery else {
+                        print("Realm UpdateRecord.Battery Failed.")
+                        return
+                    }
                     refresh[0].Battery = Battery
                     
-                    guard let SensorID = record.SensorID else { return }
+                    guard let SensorID = record.SensorID else {
+                        print("Realm UpdateRecord.SensorID Failed.")
+                        return
+                    }
                     refresh[0].SensorID = SensorID
                     
-                    guard let UserID = record.UserID else { return }
+                    guard let UserID = record.UserID else {
+                        print("Realm UpdateRecord.UserID Failed.")
+                        return
+                    }
                     refresh[0].UserID = UserID
                     
                     refresh[0].Check = record.Check
@@ -886,10 +945,9 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     print("\(time) Realm2 ReWrite Data Index:\(record.IndexID)")
                     print("Realm UpdateRecord Success.")
                 }
-            } catch let error as NSError {
-                print("Realm UpdateRecord Failed, Error: \(error)")
+            } catch {
+                print("Realm UpdateRecord Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -959,24 +1017,42 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if lastRecords.count == 0 {
             let eventTable = DB_EventTable()
             
-            guard let Index = event.Index else { return }
+            guard let Index = event.Index else {
+                print("Realm AddEvent.Index Failed.")
+                return
+            }
             eventTable.Index = Index
             
-            guard let TimeStamp = event.TimeStamp else { return }
+            guard let TimeStamp = event.TimeStamp else {
+                print("Realm AddEvent.TimeStamp Failed.")
+                return
+            }
             eventTable.TimeStamp = TimeStamp
             
-            guard let EventID = event.EventID else { return }
+            guard let EventID = event.EventID else {
+                print("Realm AddEvent.EventID Failed.")
+                return
+            }
             eventTable.EventID = EventID
             
-            guard let EventValue = event.EventValue else { return }
+            guard let EventValue = event.EventValue else {
+                print("Realm AddEvent.EventValue Failed.")
+                return
+            }
             eventTable.EventValue = EventValue
             
-            guard let eventAttribute = event.EventAttribute else { return }
+            guard let eventAttribute = event.EventAttribute else {
+                print("Realm AddEvent.EventAttribute Failed.")
+                return
+            }
             for i in 0 ..< eventAttribute.count {
                 eventTable.EventAttribute.append(eventAttribute[i])
             }
             
-            guard let Note = event.Note else { return }
+            guard let Note = event.Note else {
+                print("Realm AddEvent.Note Failed.")
+                return
+            }
             eventTable.Note = Note
             
             eventTable.Check = event.Check
@@ -985,10 +1061,9 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     realm.add(eventTable)
                     print("Realm AddEvent Success.")
                 }
-            } catch let error as NSError {
-                print("Realm AddEvent Failed, Error: \(error)")
+            } catch {
+                print("Realm AddEvent Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -998,34 +1073,51 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if results.count > 0 {
             do {
                 try! realm.write {
-                    guard let Index = event.Index else { return }
+                    guard let Index = event.Index else {
+                        print("Realm UpdateEvent.Index Failed.")
+                        return
+                    }
                     results[0].Index = Index
                     
-                    guard let TimeStamp = event.TimeStamp else { return }
+                    guard let TimeStamp = event.TimeStamp else {
+                        print("Realm UpdateEvent.TimeStamp Failed.")
+                        return
+                    }
                     results[0].TimeStamp = TimeStamp
                     
-                    guard let EventID = event.EventID else { return }
+                    guard let EventID = event.EventID else {
+                        print("Realm UpdateEvent.EventID Failed.")
+                        return
+                    }
                     results[0].EventID = EventID
                     
-                    guard let EventValue = event.EventValue else { return }
+                    guard let EventValue = event.EventValue else {
+                        print("Realm UpdateEvent.EventValue Failed.")
+                        return
+                    }
                     results[0].EventValue = EventValue
                     
-                    guard let eventAttribute = event.EventAttribute else { return }
+                    guard let eventAttribute = event.EventAttribute else {
+                        print("Realm UpdateEvent.EventAttribute Failed.")
+                        return
+                    }
                     results[0].EventAttribute.removeAll()
                     for i in 0 ..< eventAttribute.count {
                         results[0].EventAttribute.append(eventAttribute[i])
                     }
                     
-                    guard let Note = event.Note else { return }
+                    guard let Note = event.Note else {
+                        print("Realm UpdateEvent.Note Failed.")
+                        return
+                    }
                     results[0].Note = Note
                     
                     results[0].Check = event.Check
                     print("Realm UpdateEvent Success.")
                 }
-            } catch let error as NSError {
-                print("Realm UpdateEvent Failed, Error: \(error)")
+            } catch {
+                print("Realm UpdateEvent Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -1059,13 +1151,22 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if (lastRecords.count == 0) {
             let alertTable = DB_AlertTable()
             
-            guard let AlertID = alert.AlertID else { return }
+            guard let AlertID = alert.AlertID else {
+                print("Realm AddAlert.AlertID Failed.")
+                return
+            }
             alertTable.AlertID = AlertID
             
-            guard let AlertValue = alert.AlertValue else { return }
+            guard let AlertValue = alert.AlertValue else {
+                print("Realm AddAlert.AlertValue Failed.")
+                return
+            }
             alertTable.AlertValue = AlertValue
             
-            guard let Timestamp = alert.Timestamp else { return }
+            guard let Timestamp = alert.Timestamp else {
+                print("Realm AddAlert.Timestamp Failed.")
+                return
+            }
             alertTable.Timestamp = Timestamp
             
             alertTable.Check = alert.Check
@@ -1074,10 +1175,9 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     realm.add(alertTable)
                     print("Realm AddAlert Success.")
                 }
-            } catch let error as NSError {
+            } catch {
                 print("Realm AddAlert Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -1106,39 +1206,72 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if lastRecords.count == 0 {
             let personalInfo = DB_PersonalInfo()
             
-            guard let UserID = info.UserID else { return }
+            guard let UserID = info.UserID else {
+                print("Realm AddPersonalInfo.UserID Failed.")
+                return
+            }
             personalInfo.UserID = UserID
             
-            guard let FirstName = info.fname else { return }
+            guard let FirstName = info.fname else {
+                print("Realm AddPersonalInfo.fname Failed.")
+                return
+            }
             personalInfo.fname = FirstName
             
-            guard let LastName = info.lname else { return }
+            guard let LastName = info.lname else {
+                print("Realm AddPersonalInfo.lname Failed.")
+                return
+            }
             personalInfo.lname = LastName
             
-            guard let Birthday = info.birth else { return }
+            guard let Birthday = info.birth else {
+                print("Realm AddPersonalInfo.birth Failed.")
+                return
+            }
             personalInfo.birth = Birthday
             
-            guard let Phone = info.phone else { return }
+            guard let Phone = info.phone else {
+                print("Realm AddPersonalInfo.phone Failed.")
+                return
+            }
             personalInfo.phone = Phone
             
             personalInfo.IsPhoneBinding = info.IsPhoneBinding
             
-            guard let Address = info.address else { return }
+            guard let Address = info.address else {
+                print("Realm AddPersonalInfo.address Failed.")
+                return
+            }
             personalInfo.address = Address
             
-            guard let Gender = info.gender else { return }
+            guard let Gender = info.gender else {
+                print("Realm AddPersonalInfo.gender Failed.")
+                return
+            }
             personalInfo.gender = Gender
             
-            guard let Height = info.height else { return }
+            guard let Height = info.height else {
+                print("Realm AddPersonalInfo.height Failed.")
+                return
+            }
             personalInfo.height = Height
             
-            guard let Weight = info.weight else { return }
+            guard let Weight = info.weight else {
+                print("Realm AddPersonalInfo.weight Failed.")
+                return
+            }
             personalInfo.weight = Weight
             
-            guard let Ethnic = info.ethnic else { return }
+            guard let Ethnic = info.ethnic else {
+                print("Realm AddPersonalInfo.ethnic Failed.")
+                return
+            }
             personalInfo.ethnic = Ethnic
             
-            guard let Drink = info.drink else { return }
+            guard let Drink = info.drink else {
+                print("Realm AddPersonalInfo.drink Failed.")
+                return
+            }
             personalInfo.drink = Drink
             
             personalInfo.smoke = info.smoke
@@ -1149,10 +1282,9 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     realm.add(personalInfo)
                     print("Realm AddPersonalInfo Success.")
                 }
-            } catch let error as NSError {
+            } catch {
                 print("Realm AddPersonalInfo Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -1162,39 +1294,72 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if results.count > 0 {
             do {
                 try! realm.write {
-                    guard let UserID = info.UserID else { return }
+                    guard let UserID = info.UserID else {
+                        print("Realm UpdatePersonalInfo.UserID Failed.")
+                        return
+                    }
                     results[0].UserID = UserID
                     
-                    guard let FirstName = info.fname else { return }
+                    guard let FirstName = info.fname else {
+                        print("Realm UpdatePersonalInfo.fname Failed.")
+                        return
+                    }
                     results[0].fname = FirstName
                     
-                    guard let LastName = info.lname else { return }
+                    guard let LastName = info.lname else {
+                        print("Realm UpdatePersonalInfo.lname Failed.")
+                        return
+                    }
                     results[0].lname = LastName
                     
-                    guard let Birthday = info.birth else { return }
+                    guard let Birthday = info.birth else {
+                        print("Realm UpdatePersonalInfo.birth Failed.")
+                        return
+                    }
                     results[0].birth = Birthday
                     
-                    guard let Phone = info.phone else { return }
+                    guard let Phone = info.phone else {
+                        print("Realm UpdatePersonalInfo.phone Failed.")
+                        return
+                    }
                     results[0].phone = Phone
                     
                     results[0].IsPhoneBinding = info.IsPhoneBinding
                     
-                    guard let Address = info.address else { return }
+                    guard let Address = info.address else {
+                        print("Realm UpdatePersonalInfo.address Failed.")
+                        return
+                    }
                     results[0].address = Address
                     
-                    guard let Gender = info.gender else { return }
+                    guard let Gender = info.gender else {
+                        print("Realm UpdatePersonalInfo.gender Failed.")
+                        return
+                    }
                     results[0].gender = Gender
                     
-                    guard let Height = info.height else { return }
+                    guard let Height = info.height else {
+                        print("Realm UpdatePersonalInfo.height Failed.")
+                        return
+                    }
                     results[0].height = Height
                     
-                    guard let Weight = info.weight else { return }
+                    guard let Weight = info.weight else {
+                        print("Realm UpdatePersonalInfo.weight Failed.")
+                        return
+                    }
                     results[0].weight = Weight
                     
-                    guard let Ethnic = info.ethnic else { return }
+                    guard let Ethnic = info.ethnic else {
+                        print("Realm UpdatePersonalInfo.ethnic Failed.")
+                        return
+                    }
                     results[0].ethnic = Ethnic
                     
-                    guard let Drink = info.drink else { return }
+                    guard let Drink = info.drink else {
+                        print("Realm UpdatePersonalInfo.drink Failed.")
+                        return
+                    }
                     results[0].drink = Drink
                     
                     results[0].smoke = info.smoke
@@ -1202,10 +1367,9 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     results[0].Check = info.Check
                     print("Realm UpdatePersonalInfo Success.")
                 }
-            } catch let error as NSError {
+            } catch {
                 print("Realm UpdatePersonalInfo Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -1240,47 +1404,79 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if lastRecords.count == 0 {
             let personalDynamicInfo = DB_PersonalDynamicInfo()
             
-            guard let UserID = info.UserID else { return }
+            guard let UserID = info.UserID else {
+                print("Realm AddPersonDynamicInfo.UserID Failed.")
+                return
+            }
             personalDynamicInfo.UserID = UserID
             
-            guard let Timestamp = info.Timestamp else { return }
+            guard let Timestamp = info.Timestamp else {
+                print("Realm AddPersonDynamicInfo.Timestamp Failed.")
+                return
+            }
             personalDynamicInfo.Timestamp = Timestamp
             
-            guard let BodyFatPercentage = info.BodyFatPercentage else { return }
+            guard let BodyFatPercentage = info.BodyFatPercentage else {
+                print("Realm AddPersonDynamicInfo.BodyFatPercentage Failed.")
+                return
+            }
             personalDynamicInfo.BodyFatPercentage = BodyFatPercentage
             
-            guard let HbA1c = info.HbA1c else { return }
+            guard let HbA1c = info.HbA1c else {
+                print("Realm AddPersonDynamicInfo.HbA1c Failed.")
+                return
+            }
             personalDynamicInfo.HbA1c = HbA1c
             
-            guard let SYS = info.SYS else { return }
+            guard let SYS = info.SYS else {
+                print("Realm AddPersonDynamicInfo.SYS Failed.")
+                return
+            }
             personalDynamicInfo.SYS = SYS
             
-            guard let DIA = info.DIA else { return }
+            guard let DIA = info.DIA else {
+                print("Realm AddPersonDynamicInfo.DIA Failed.")
+                return
+            }
             personalDynamicInfo.DIA = DIA
             
-            guard let TC = info.TC else { return }
+            guard let TC = info.TC else {
+                print("Realm AddPersonDynamicInfo.TC Failed.")
+                return
+            }
             personalDynamicInfo.TC = TC
             
-            guard let HDLC = info.HDLC else { return }
+            guard let HDLC = info.HDLC else {
+                print("Realm AddPersonDynamicInfo.HDLC Failed.")
+                return
+            }
             personalDynamicInfo.HDLC = HDLC
             
-            guard let LDL = info.LDL else { return }
+            guard let LDL = info.LDL else {
+                print("Realm AddPersonDynamicInfo.LDL Failed.")
+                return
+            }
             personalDynamicInfo.LDL = LDL
             
-            guard let Diabletes = info.Diabletes else { return }
+            guard let Diabletes = info.Diabletes else {
+                print("Realm AddPersonDynamicInfo.Diabletes Failed.")
+                return
+            }
             personalDynamicInfo.Diabletes = Diabletes
             
-            guard let CRE = info.CRE else { return }
+            guard let CRE = info.CRE else {
+                print("Realm AddPersonDynamicInfo.CRE Failed.")
+                return
+            }
             personalDynamicInfo.CRE = CRE
             do {
                 try! realm.write {
                     realm.add(personalDynamicInfo)
                     print("Realm AddPersonDynamicInfo Success.")
                 }
-            } catch let error as NSError {
+            } catch {
                 print("Realm AddPersonDynamicInfo Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -1290,44 +1486,76 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if results.count > 0 {
             do {
                 try! realm.write {
-                    guard let UserID = info.UserID else { return }
+                    guard let UserID = info.UserID else {
+                        print("Realm UpdatePersonDynamicInfo.UserID Failed.")
+                        return
+                    }
                     results[0].UserID = UserID
                     
-                    guard let Timestamp = info.Timestamp else { return }
+                    guard let Timestamp = info.Timestamp else {
+                        print("Realm UpdatePersonDynamicInfo.Timestamp Failed.")
+                        return
+                    }
                     results[0].Timestamp = Timestamp
                     
-                    guard let BodyFatPercentage = info.BodyFatPercentage else { return }
+                    guard let BodyFatPercentage = info.BodyFatPercentage else {
+                        print("Realm UpdatePersonDynamicInfo.BodyFatPercentage Failed.")
+                        return
+                    }
                     results[0].BodyFatPercentage = BodyFatPercentage
                     
-                    guard let HbA1c = info.HbA1c else { return }
+                    guard let HbA1c = info.HbA1c else {
+                        print("Realm UpdatePersonDynamicInfo.HbA1c Failed.")
+                        return
+                    }
                     results[0].HbA1c = HbA1c
                     
-                    guard let SYS = info.SYS else { return }
+                    guard let SYS = info.SYS else {
+                        print("Realm UpdatePersonDynamicInfo.SYS Failed.")
+                        return
+                    }
                     results[0].SYS = SYS
                     
-                    guard let DIA = info.DIA else { return }
+                    guard let DIA = info.DIA else {
+                        print("Realm UpdatePersonDynamicInfo.DIA Failed.")
+                        return
+                    }
                     results[0].DIA = DIA
                     
-                    guard let TC = info.TC else { return }
+                    guard let TC = info.TC else {
+                        print("Realm UpdatePersonDynamicInfo.TC Failed.")
+                        return
+                    }
                     results[0].TC = TC
                     
-                    guard let HDLC = info.HDLC else { return }
+                    guard let HDLC = info.HDLC else {
+                        print("Realm UpdatePersonDynamicInfo.HDLC Failed.")
+                        return
+                    }
                     results[0].HDLC = HDLC
                     
-                    guard let LDL = info.LDL else { return }
+                    guard let LDL = info.LDL else {
+                        print("Realm UpdatePersonDynamicInfo.LDL Failed.")
+                        return
+                    }
                     results[0].LDL = LDL
                     
-                    guard let Diabletes = info.Diabletes else { return }
+                    guard let Diabletes = info.Diabletes else {
+                        print("Realm UpdatePersonDynamicInfo.Diabletes Failed.")
+                        return
+                    }
                     results[0].Diabletes = Diabletes
                     
-                    guard let CRE = info.CRE else { return }
+                    guard let CRE = info.CRE else {
+                        print("Realm UpdatePersonDynamicInfo.CRE Failed.")
+                        return
+                    }
                     results[0].CRE = CRE
                     print("Realm UpdatePersonDynamicInfo Success.")
                 }
-            } catch let error as NSError {
+            } catch {
                 print("Realm UpdatePersonDynamicInfo Failed, Error: \(error.localizedDescription)")
             }
-            print("File URL:\(realm.configuration.fileURL!)")
         }
     }
     
@@ -1376,7 +1604,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     print("Realm UpdateGlucoseCorrectParam Success.")
                 }
                 DataCorrectionAlgo.share.UpdateAlgoParam(param: event)
-            } catch let error as NSError {
+            } catch {
                 print("Realm UpdateGlucoseCorrectParam Failed, Error: \(error.localizedDescription)")
             }
         } else {
@@ -1398,7 +1626,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                     print("Realm AddGlucoseCorrectParam Success.")
                 }
                 DataCorrectionAlgo.share.UpdateAlgoParam(param: event)
-            } catch let error as NSError {
+            } catch {
                 print("Realm AddGlucoseCorrectParam Failed, Error: \(error.localizedDescription)")
             }
         }
