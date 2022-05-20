@@ -742,6 +742,9 @@ public class DB_PersonalInfo: Object {
     @objc public dynamic var drink: Int = 0 // 飲酒程度
     @objc public dynamic var smoke: Bool = false // 是否吸菸
     @objc public dynamic var Check: Bool = false // 是否上傳雲端
+    @objc public dynamic var lastRecordCount = "00000000"
+    @objc public dynamic var firstRecordCount = "00000000"
+    @objc public dynamic var resetCount = 0
 }
 
 public class DB_PersonalDynamicInfo: Object {
@@ -960,11 +963,11 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                 let sensingRecord = SensingRecord()
                 sensingRecord.Timestamp = results[i].Timestamp
                 sensingRecord.IndexID = results[i].IndexID
-                sensingRecord.RawData?.removeAll()
+                sensingRecord.RawData = []
                 for j in 0 ..< results[i].RawData.count {
                     sensingRecord.RawData?.append(results[i].RawData[j])
                 }
-                sensingRecord.CalibrationData?.removeAll()
+                sensingRecord.CalibrationData = []
                 for j in 0 ..< results[i].CalibrationData.count {
                     sensingRecord.CalibrationData?.append(results[i].CalibrationData[j])
                 }
@@ -989,11 +992,11 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
         if results.count > 0 {
             sensingRecord.Timestamp = results[0].Timestamp
             sensingRecord.IndexID = results[0].IndexID
-            sensingRecord.RawData?.removeAll()
+            sensingRecord.RawData = []
             for i in 0 ..< results[0].RawData.count {
                 sensingRecord.RawData?.append(results[0].RawData[i])
             }
-            sensingRecord.CalibrationData?.removeAll()
+            sensingRecord.CalibrationData = []
             for i in 0 ..< results[0].CalibrationData.count {
                 sensingRecord.CalibrationData?.append(results[0].CalibrationData[i])
             }
@@ -1132,6 +1135,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
                 eventTable.TimeStamp = results[i].TimeStamp
                 eventTable.EventID = results[i].EventID
                 eventTable.EventValue = results[i].EventValue
+                eventTable.EventAttribute = []
                 for j in 0 ..< results[i].EventAttribute.count {
                     eventTable.EventAttribute?.append(results[i].EventAttribute[j])
                 }
@@ -1400,7 +1404,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddPersonDynamicInfo(info: PersonalDynamicInfo) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID = %s", info.UserID)
+        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID = %s AND TimeStamp = %lld", info.UserID, info.Timestamp)
         if lastRecords.count == 0 {
             let personalDynamicInfo = DB_PersonalDynamicInfo()
             
@@ -1482,7 +1486,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func UpdatePersonDynamicInfo(info: PersonalDynamicInfo) {
         let realm = try! Realm()
-        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == %s", info.UserID)
+        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == %s AND TimeStamp == %lld", info.UserID, info.Timestamp)
         if results.count > 0 {
             do {
                 try! realm.write {
