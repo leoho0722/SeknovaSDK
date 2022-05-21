@@ -610,7 +610,13 @@ extension LocalDatabase: LocalDatabaseDelegate {
     
     public func saveRecordCountData() {
         let realm = try! Realm()
-        let results = realm.objects(UserInformation.self).filter("UserID == %s", SDK_Setting.shared.username)
+//        let results = realm.objects(UserInformation.self).filter("UserID == %s", SDK_Setting.shared.username)
+//        try! realm.write {
+//            results[0].lastRecordCount = SDK_Setting.shared.lastRecordCount
+//            results[0].firstRecordCount = SDK_Setting.shared.firstRecordCount
+//            results[0].resetCount = SDK_Setting.shared.resetCount
+//        }
+        let results = realm.objects(DB_PersonalInfo.self).filter("UserID == %s", SDK_Setting.shared.username)
         try! realm.write {
             results[0].lastRecordCount = SDK_Setting.shared.lastRecordCount
             results[0].firstRecordCount = SDK_Setting.shared.firstRecordCount
