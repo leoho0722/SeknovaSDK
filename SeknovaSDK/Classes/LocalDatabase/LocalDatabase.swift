@@ -1404,7 +1404,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddPersonDynamicInfo(info: PersonalDynamicInfo) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID = %s AND TimeStamp = %lld", info.UserID, info.Timestamp)
+        let lastRecords = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID = %s AND Timestamp = %lld", info.UserID, info.Timestamp)
         if lastRecords.count == 0 {
             let personalDynamicInfo = DB_PersonalDynamicInfo()
             
@@ -1486,7 +1486,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func UpdatePersonDynamicInfo(info: PersonalDynamicInfo) {
         let realm = try! Realm()
-        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == %s AND TimeStamp == %lld", info.UserID, info.Timestamp)
+        let results = realm.objects(DB_PersonalDynamicInfo.self).filter("UserID == %s AND Timestamp == %lld", info.UserID, info.Timestamp)
         if results.count > 0 {
             do {
                 try! realm.write {
