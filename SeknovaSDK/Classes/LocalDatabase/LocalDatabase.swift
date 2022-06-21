@@ -788,7 +788,7 @@ extension LocalDatabase: LocalDatabaseManagerDelegate {
     
     public func AddRecord(record: SensingRecord) {
         let realm = try! Realm()
-        let lastRecords = realm.objects(DB_SensingRecord.self).filter("Timestamp = %lld", record.Timestamp, record.IndexID)
+        let lastRecords = realm.objects(DB_SensingRecord.self).filter("Timestamp == %lld", record.Timestamp)
         if lastRecords.count == 0 {
             let records = DB_SensingRecord()
             
