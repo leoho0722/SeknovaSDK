@@ -12,6 +12,10 @@ public class TestFunc: NSObject {
     public static func sayHello() {
         print("SeknovaSDK Test！！！")
     }
+    
+    public static func testFunc() {
+        print("allen Test SDK")
+    }
 
 }
 
