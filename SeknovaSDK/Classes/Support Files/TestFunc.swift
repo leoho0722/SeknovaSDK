@@ -16,6 +16,9 @@ public class TestFunc: NSObject {
     public static func testFunc() {
         print("allen Test SDK")
     }
-
+    
+    public static func enTestFunc() {
+        print("en Test SDK")
+    }
 }
 
