@@ -157,6 +157,8 @@ extension SDK_BluetoothService: CBPeripheralDelegate {
             transmitterInfo?.Remain_warmUp_time = warmUpTime
             transmitterInfo?.Remain_calibration_time = calibrationTime
             
+            delegate?.EventCallback(eventID: 6, value: (transmitterInfo?.SensorState)!)
+            
             SDK_Setting.shared.warmUpTime = warmUpTime * 60
 
             // 暫時
@@ -453,7 +455,7 @@ extension SDK_BluetoothService: CBPeripheralDelegate {
             
             delegate?.EventCallback(eventID: 1, value: 0)
             
-            delegate?.EventCallback(eventID: 6, value: (transmitterInfo?.SensorState)!)
+            
         }
         
     }
