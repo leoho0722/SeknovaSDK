@@ -25,7 +25,7 @@ public class SDK_CommandBase: NSObject {
                                    dataLengh: index[3],
                                    count: index[4]+index[5]+index[6]+index[7],
                                    trend: index[8]+index[9],
-                                   adc: index[10]+index[11],
+                                   adc: index[8]+index[9]+index[10]+index[11],
                                    temperature: index[12]+index[13],
                                    address: index[14]+index[15]+index[16]+index[17]+index[18]+index[19],
                                    status: index[14],
